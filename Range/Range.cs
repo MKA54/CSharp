@@ -28,18 +28,19 @@ namespace Range
         public double Length => Math.Abs(To - From);
 
         private static bool IsDoubleEquals(double arg1, double arg2) => Math.Abs(arg1 - arg2) <= Epsilon;
+        private static bool IsFirstDoubleMore(double arg1, double arg2) => arg1 - arg2 > Epsilon;
 
         public bool IsInside(double point)
         {
-            return point - From > Epsilon && To - point > Epsilon || 
+            return IsFirstDoubleMore(point, From) && IsFirstDoubleMore(To, point) || 
                 IsDoubleEquals(From, point) ||
                 IsDoubleEquals(To, point);
         }
 
         public Range GetIntersection(Range range)
         {
-            if (range.From - To > double.Epsilon || IsDoubleEquals(range.From, To) || 
-                From - range.To > double.Epsilon || IsDoubleEquals(From, range.To))
+            if (IsFirstDoubleMore(range.From, To) || IsDoubleEquals(range.From, To) ||
+                IsFirstDoubleMore(From, range.To) || IsDoubleEquals(From, range.To))
             {
                 return null;
             }
@@ -48,7 +49,7 @@ namespace Range
         }
         public Range[] GetUnion(Range range)
         {
-            if (range.From - To > double.Epsilon || From - range.To > double.Epsilon)
+            if (IsFirstDoubleMore(range.From, To) || IsFirstDoubleMore(From, range.To))
             {
                 return new Range[] { new Range(From, To), new Range(range.From, range.To) };
             }
@@ -58,22 +59,22 @@ namespace Range
 
         public Range[] GetDifference(Range range)
         {
-            if ( range.From - From > double.Epsilon && To - range.To > double.Epsilon)
+            if (IsFirstDoubleMore(range.From, From) && IsFirstDoubleMore(To, range.To))
             {
                 return new Range[] { new Range(From, range.From), new Range(range.To, To) };
             }
 
-            if (range.From - From > double.Epsilon && To - range.From > double.Epsilon && (range.To - To > double.Epsilon || IsDoubleEquals(range.To, To)))
+            if (IsFirstDoubleMore(range.From, From) && IsFirstDoubleMore(To, range.From) && (IsFirstDoubleMore(range.To, To) || IsDoubleEquals(range.To, To)))
             {
                 return new Range[] { new Range(From, range.From) };
             }
 
-            if ((range.From - From> double.Epsilon || IsDoubleEquals(From, range.From) && To - range.To > double.Epsilon && range.To - From > double.Epsilon))
+            if ((IsFirstDoubleMore(range.From, From) || IsDoubleEquals(From, range.From) && IsFirstDoubleMore(To, range.To) && IsFirstDoubleMore(range.To, From)))
             {
                 return new Range[] { new Range(range.To, To) };
             }
 
-            if ((From - range.From > double.Epsilon || IsDoubleEquals(From, range.From) && (range.To - To > double.Epsilon || IsDoubleEquals(range.To, To))))
+            if ((IsFirstDoubleMore(From, range.From) || IsDoubleEquals(From, range.From) && (IsFirstDoubleMore(range.To, To) || IsDoubleEquals(range.To, To))))
             {
                 return new Range[0];
             }
