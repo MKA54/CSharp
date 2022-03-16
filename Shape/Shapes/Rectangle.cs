@@ -25,30 +25,20 @@ namespace Shape.Shapes
             get;
         }
 
-        public double GetArea()
-        {
-            return Width * Height;
-        }
+        public double GetArea() => Width * Height;
 
-        public double GetHeight()
-        {
-            return Height;
-        }
+        public double GetHeight() => Height;
 
-        public double GetPerimeter()
-        {
-            return (Width + Height) * 2;
-        }
+        public double GetPerimeter() => (Width + Height) * 2;
 
-        public double GetWidth()
-        {
-            return Width;
-        }
+        public double GetWidth() => Width;
 
         public override string ToString()
         {
             return string.Format("Прямоугольник с размерами: ширина-{0}, длина-{1}", Width, Height);
         }
+
+        private static bool IsDoubleEquals(double arg1, double arg2) => Math.Abs(arg1 - arg2) <= Epsilon;
 
         public override bool Equals(object Obj)
         {
@@ -64,7 +54,7 @@ namespace Shape.Shapes
 
             Rectangle Rectangle = (Rectangle)Obj;
 
-            return Math.Abs(Rectangle.Width - Width) <= Epsilon && Math.Abs(Rectangle.Height - Height) <= Epsilon;
+            return IsDoubleEquals(Rectangle.Width, Width)  && IsDoubleEquals(Rectangle.Height, Height);
         }
 
         public override int GetHashCode()

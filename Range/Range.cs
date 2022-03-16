@@ -8,7 +8,7 @@ namespace Range
 {
     internal class Range
     {
-        public const double Epsilon = 1.0e-10;
+        private const double Epsilon = 1.0e-10;
         public Range(double from, double to)
         {
             From = Math.Min(from, to);

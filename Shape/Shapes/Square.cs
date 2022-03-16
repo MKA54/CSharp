@@ -20,15 +20,9 @@ namespace Shape.Shapes
             get;
         }
 
-        public double GetArea()
-        {
-            return SideLength * SideLength;
-        }
+        public double GetArea() => SideLength * SideLength;
 
-        public double GetHeight()
-        {
-            return SideLength;
-        }
+        public double GetHeight() => SideLength;
 
         public double GetPerimeter()
         {
@@ -37,10 +31,7 @@ namespace Shape.Shapes
 
         }
 
-        public double GetWidth()
-        {
-            return SideLength;
-        }
+        public double GetWidth() => SideLength;
 
         public override string ToString()
         {

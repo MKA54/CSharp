@@ -19,25 +19,13 @@ namespace Shape.Shapes
             get;
         }
 
-        public double GetArea()
-        {
-            return Math.PI * Math.Pow(Radius, 2);
-        }
+        public double GetArea() => Math.PI * Math.Pow(Radius, 2);
 
-        public double GetHeight()
-        {
-            return 2 * Radius;
-        }
+        public double GetHeight() => 2 * Radius;
 
-        public double GetPerimeter()
-        {
-            return 2 * Math.PI * Radius;
-        }
+        public double GetPerimeter() => 2 * Math.PI * Radius;
 
-        public double GetWidth()
-        {
-            return 2 * Radius;
-        }
+        public double GetWidth() => 2 * Radius;
 
         public override string ToString()
         {
