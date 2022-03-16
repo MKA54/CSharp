@@ -8,37 +8,38 @@ namespace Range
 {
     internal class Range
     {
+        public const double Epsilon = 1.0e-10;
         public Range(double from, double to)
         {
-            this.From = from;
-            this.To = to;
+            From = Math.Min(from, to);
+            To = Math.Max(from, to);
         }
+
         public double From
         {
             get;
-            set;
         }
+
         public double To
         {
             get;
-            private set;
-        }
-        public double GetLength
-        {
-            get
-            {
-                return To - From;
-            }
         }
 
-        public bool IsInside(double number)
+        public double Length => Math.Abs(To - From);
+
+        private static bool IsDoubleEquals(double arg1, double arg2) => Math.Abs(arg1 - arg2) <= Epsilon;
+
+        public bool IsInside(double point)
         {
-            return (number - From > double.Epsilon && To - number > double.Epsilon) || (Math.Abs(From - number) <= double.Epsilon) || (Math.Abs(To - number) <= double.Epsilon);
+            return point - From > Epsilon && To - point > Epsilon || 
+                IsDoubleEquals(From, point) ||
+                IsDoubleEquals(To, point);
         }
 
         public Range GetIntersection(Range range)
         {
-            if (range.From - To > double.Epsilon || Math.Abs(range.From - To) <= double.Epsilon || From - range.To > double.Epsilon || Math.Abs(From - range.To) <= double.Epsilon)
+            if (range.From - To > double.Epsilon || IsDoubleEquals(range.From, To) || 
+                From - range.To > double.Epsilon || IsDoubleEquals(From, range.To))
             {
                 return null;
             }
@@ -62,17 +63,17 @@ namespace Range
                 return new Range[] { new Range(From, range.From), new Range(range.To, To) };
             }
 
-            if (range.From - From > double.Epsilon && To - range.From > double.Epsilon && (range.To - To > double.Epsilon || Math.Abs(range.To - To) <= double.Epsilon))
+            if (range.From - From > double.Epsilon && To - range.From > double.Epsilon && (range.To - To > double.Epsilon || IsDoubleEquals(range.To, To)))
             {
                 return new Range[] { new Range(From, range.From) };
             }
 
-            if ((range.From - From> double.Epsilon || Math.Abs(From - range.From) <= double.Epsilon && To - range.To > double.Epsilon && range.To - From > double.Epsilon))
+            if ((range.From - From> double.Epsilon || IsDoubleEquals(From, range.From) && To - range.To > double.Epsilon && range.To - From > double.Epsilon))
             {
                 return new Range[] { new Range(range.To, To) };
             }
 
-            if ((From - range.From > double.Epsilon || Math.Abs(From - range.From) <= double.Epsilon && (range.To - To > double.Epsilon || Math.Abs(range.To - To) <= double.Epsilon)))
+            if ((From - range.From > double.Epsilon || IsDoubleEquals(From, range.From) && (range.To - To > double.Epsilon || IsDoubleEquals(range.To, To))))
             {
                 return new Range[0];
             }

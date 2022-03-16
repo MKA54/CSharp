@@ -8,6 +8,8 @@ namespace Shape.Shapes
 {
     internal class Triangle : IShape
     {
+        private const double Epsilon = 1.0e-10;
+
         public Triangle(double X1, double Y1, double X2, double Y2, double X3, double Y3)
         {
             this.X1 = X1;
@@ -17,35 +19,35 @@ namespace Shape.Shapes
             this.X3 = X3;
             this.Y3 = Y3;
         }
+
         public double X1
         {
             get;
-            set;
         }
+
         public double Y1
         {
             get;
-            set;
         }
+
         public double X2
         {
             get;
-            set;
         }
+
         public double Y2
         {
             get;
-            set;
         }
+
         public double X3
         {
             get;
-            set;
         }
+
         public double Y3
         {
             get;
-            set;
         }
         private static double GetSegmentLength(double X1, double Y1, double X2, double Y2)
         {
@@ -77,6 +79,39 @@ namespace Shape.Shapes
         {
             return string.Format("Треугольник с координатами: х1-{0}, y1-{1}, х2-{2}, y2-{3}, " +
                 "х3-{4}, y3-{5},", X1, Y1, X2, Y2, X3, Y3);
+        }
+
+        public override bool Equals(object Obj)
+        {
+            if (ReferenceEquals(Obj, this))
+            {
+                return true;
+            }
+
+            if (ReferenceEquals(Obj, null) || Obj.GetType() != this.GetType())
+            {
+                return false;
+            }
+
+            Triangle Triangle = (Triangle)Obj;
+
+            return Math.Abs(Triangle.X1 - X1) <= Epsilon && Math.Abs(Triangle.Y1 - Y1) <= Epsilon
+                && Math.Abs(Triangle.X2 - X2) <= Epsilon && Math.Abs(Triangle.Y2 - Y2) <= Epsilon &&
+                Math.Abs(Triangle.X3 - X3) <= Epsilon && Math.Abs(Triangle.Y3 - Y3) <= Epsilon;
+        }
+
+        public override int GetHashCode()
+        {
+            var Prime = 37;
+            var Hash = 1;
+
+            Hash = Prime * Hash + X1.GetHashCode();
+            Hash = Prime * Hash + Y1.GetHashCode();
+            Hash = Prime * Hash + X2.GetHashCode();
+            Hash = Prime * Hash + Y2.GetHashCode();
+            Hash = Prime * Hash + X3.GetHashCode();
+
+            return Prime * Hash + Y3.GetHashCode();
         }
     }
 }
