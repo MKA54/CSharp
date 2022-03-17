@@ -201,7 +201,12 @@ namespace Vector
             var Prime = 37;
             var Hash = 1;
 
-            return Prime * Hash + Coordinates.GetHashCode();
+            foreach (var Coodinate in Coordinates)
+            {
+                Hash = Prime * Hash + Coodinate.GetHashCode();
+            }
+
+            return Hash;
         }
     }
 }
