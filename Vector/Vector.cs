@@ -18,7 +18,7 @@ namespace Vector
             Coordinates = new double[Size];
         }
 
-        public Vector(Vector Vector) => Array.Copy(Vector.Coordinates, 0, this.Coordinates = new double[Vector.Coordinates.Length], 0, Vector.Coordinates.Length);
+        public Vector(Vector Vector) => Array.Copy(Vector.Coordinates, Coordinates = new double[Vector.Coordinates.Length], Vector.Coordinates.Length);
 
         public Vector(double[] Coordinates)
         {
@@ -27,7 +27,7 @@ namespace Vector
                 throw new ArgumentException("invalid array length: " + Coordinates.Length);
             }
 
-            Array.Copy(Coordinates, 0, this.Coordinates = new double[Coordinates.Length], 0, Coordinates.Length);
+            Array.Copy(Coordinates, this.Coordinates = new double[Coordinates.Length], Coordinates.Length);
         }
 
         public Vector(int Size, double[] Coordinates)
@@ -42,7 +42,7 @@ namespace Vector
                 throw new ArgumentException("size: " + Size + " < Coordinates.Length");
             }
 
-            Array.Copy(Coordinates, 0, this.Coordinates = new double[Size], 0, Coordinates.Length);
+            Array.Copy(Coordinates, this.Coordinates = new double[Size], Coordinates.Length);
         }
 
         public double[] Coordinates
@@ -68,7 +68,7 @@ namespace Vector
                 IncreaseArraySize(Vector.Coordinates.Length);
             }
 
-            for (int i = 0; i < Vector.Coordinates.Length; i++)
+            for (var i = 0; i < Vector.Coordinates.Length; i++)
             {
                 Coordinates[i] += Vector.Coordinates[i];
             }
@@ -81,7 +81,7 @@ namespace Vector
                 IncreaseArraySize(Vector.Coordinates.Length);
             }
 
-            for (int i = 0; i < Vector.GetSize(); i++)
+            for (var i = 0; i < Vector.GetSize(); i++)
             {
                 Coordinates[i] -= Vector.Coordinates[i];
             }
@@ -89,7 +89,7 @@ namespace Vector
 
         public void MultiplyByScalar(double Scalar)
         {
-            for (int i = 0; i < Coordinates.Length; i++)
+            for (var i = 0; i < Coordinates.Length; i++)
             {
                 Coordinates[i] *= Scalar;
             }
@@ -133,7 +133,7 @@ namespace Vector
 
         public static Vector GetSum(Vector Vector1, Vector Vector2)
         {
-            Vector Result = new Vector(Vector1);
+            var Result = new Vector(Vector1);
 
             Result.Add(Vector2);
 
@@ -142,7 +142,7 @@ namespace Vector
 
         public static Vector GetDifference(Vector Vector1, Vector Vector2)
         {
-            Vector Result = new Vector(Vector1);
+            var Result = new Vector(Vector1);
 
             Result.Subtract(Vector2);
 
@@ -151,11 +151,11 @@ namespace Vector
 
         public static double GetScalarProduct(Vector Vector1, Vector Vector2)
         {
-            double result = 0;
+            var result = 0.0;
 
-            int length = Math.Min(Vector1.GetSize(), Vector2.GetSize());
+            var length = Math.Min(Vector1.GetSize(), Vector2.GetSize());
 
-            for (int i = 0; i < length; i++)
+            for (var i = 0; i < length; i++)
             {
                 result += Vector1.Coordinates[i] * Vector2.Coordinates[i];
             }
@@ -191,7 +191,7 @@ namespace Vector
                 return false;
             }
 
-            Vector V = (Vector) Obj;
+            var V = (Vector) Obj;
 
             return Enumerable.SequenceEqual(Coordinates, V.Coordinates);
         }

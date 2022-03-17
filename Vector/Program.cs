@@ -51,27 +51,27 @@ namespace Vector
 
             var Vector6 = new Vector(new double[]
             {
-                5, 0 , -4, 3, 6, 9
+                5, 0, -4, 3, 6, 9
             });
 
             var Vector7 = new Vector(new double[]
             {
-                5, 0 , -4, 3, 6, 9, 10
+                5, 0, -4, 3, 6, 9, 10
             });
 
             var Vector8 = new Vector(new double[]
             {
-                5, 0 , -9, 3, 6
+                5, 0, 2, 3, 6, 9
             });
-
+            
             var Vector9 = new Vector(new double[]
             {
-                5, 0 , -4, 3, 6, 9
+                5, 0, -4, 3, 6, 9
             });
 
             var Vector10 = new Vector(new double[]
             {
-                5, 0 , 2, 3, 6, 9
+                5, 0, 2, 3, 6, 9
             });
 
             Console.WriteLine();
