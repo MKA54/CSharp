@@ -45,7 +45,8 @@ namespace List.List
         {
             if (Index < 0 || Index >= Size)
             {
-                throw new IndexOutOfRangeException("Index must be from 0 to " + (Size - 1) + ". Index = " + Index);
+                throw new IndexOutOfRangeException("Index must be from 0 to " + (Size - 1) + 
+                    ". Index = " + Index);
             }
         }
 
@@ -160,7 +161,8 @@ namespace List.List
                 return true;
             }
 
-            for (ListItem<T> Current = Head.Next, Previous = Head; Current != null; Previous = Current, Current = Current.Next)
+            for (ListItem<T> Current = Head.Next, Previous = Head; Current != null; 
+                Previous = Current, Current = Current.Next)
             {
                 if (Equals(Data, Current.Data))
                 {
@@ -214,8 +216,8 @@ namespace List.List
 
             SinglyLinkedList<T> Copy = new SinglyLinkedList<T>(Head.Data);
 
-            for (ListItem<T> Current = Head.Next, CurrentCopy = Copy.Head; Current != null; Current = Current.Next,
-                    CurrentCopy = CurrentCopy.Next)
+            for (ListItem<T> Current = Head.Next, CurrentCopy = Copy.Head; Current != null; 
+                Current = Current.Next, CurrentCopy = CurrentCopy.Next)
             {
                 ListItem<T> ItemCopy = new ListItem<T>(Current.Data);
 

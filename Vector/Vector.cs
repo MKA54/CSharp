@@ -18,7 +18,8 @@ namespace Vector
             Coordinates = new double[Size];
         }
 
-        public Vector(Vector Vector) => Array.Copy(Vector.Coordinates, Coordinates = new double[Vector.Coordinates.Length], Vector.Coordinates.Length);
+        public Vector(Vector Vector) => Array.Copy(Vector.Coordinates, 
+            Coordinates = new double[Vector.Coordinates.Length], Vector.Coordinates.Length);
 
         public Vector(double[] Coordinates)
         {
@@ -113,7 +114,8 @@ namespace Vector
         {
             if (Index < 0 || Index >= Coordinates.Length)
             {
-                throw new IndexOutOfRangeException("Index must be from 0 to " + (Coordinates.Length - 1) + ". Index = " + Index);
+                throw new IndexOutOfRangeException("Index must be from 0 to " + 
+                    (Coordinates.Length - 1) + ". Index = " + Index);
             }
         }
 

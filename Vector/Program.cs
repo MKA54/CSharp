@@ -44,10 +44,12 @@ namespace Vector
             Console.WriteLine("Длина вектора: " + Vector2.GetLength());
 
             var Index = 3;
-            Console.WriteLine("Координата вектора {0}, по индексу {1}", Vector2.GetCoordinateByIndex(Index), Index);
+            Console.WriteLine("Координата вектора {0}, по индексу {1}", 
+                Vector2.GetCoordinateByIndex(Index), Index);
 
             Vector2.SetCoordinateByIndex(Index, 33);
-            Console.WriteLine("Координата вектора {0}, по индексу {1}", Vector2.GetCoordinateByIndex(Index), Index);
+            Console.WriteLine("Координата вектора {0}, по индексу {1}", 
+                Vector2.GetCoordinateByIndex(Index), Index);
 
             var Vector6 = new Vector(new double[]
             {
@@ -75,10 +77,14 @@ namespace Vector
             });
 
             Console.WriteLine();
-            Console.WriteLine("Сравнение векторов по HachCode: {0}", Vector6.GetHashCode() == Vector7.GetHashCode());
-            Console.WriteLine("Сравнение векторов по HachCode: {0}", Vector6.GetHashCode() == Vector8.GetHashCode());
-            Console.WriteLine("Сравнение векторов по HachCode: {0}", Vector6.GetHashCode() == Vector9.GetHashCode());
-            Console.WriteLine("Сравнение векторов по HachCode: {0}", Vector6.GetHashCode() == Vector10.GetHashCode());
+            Console.WriteLine("Сравнение векторов по HachCode: {0}", 
+                Vector6.GetHashCode() == Vector7.GetHashCode());
+            Console.WriteLine("Сравнение векторов по HachCode: {0}", 
+                Vector6.GetHashCode() == Vector8.GetHashCode());
+            Console.WriteLine("Сравнение векторов по HachCode: {0}", 
+                Vector6.GetHashCode() == Vector9.GetHashCode());
+            Console.WriteLine("Сравнение векторов по HachCode: {0}", 
+                Vector6.GetHashCode() == Vector10.GetHashCode());
 
             Console.WriteLine();
             Console.WriteLine("Сравнение векторов по Equals: {0}", Vector6.Equals(Vector7));

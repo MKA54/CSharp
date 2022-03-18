@@ -40,9 +40,11 @@ namespace Shape
             var Cirle2 = new Shapes.Circle(7);
             var Cirle3 = new Shapes.Circle(8);
 
-            Console.WriteLine("Проверка на равенство HashCode окружностей: {0}", Cirle1.GetHashCode() == Cirle2.GetHashCode());
+            Console.WriteLine("Проверка на равенство HashCode окружностей: {0}", 
+                Cirle1.GetHashCode() == Cirle2.GetHashCode());
             Console.WriteLine("Проверка на равенство Equals окружностей: {0}", Cirle1.Equals(Cirle2));
-            Console.WriteLine("Проверка на равенство HashCode окружностей: {0}", Cirle1.GetHashCode() == Cirle3.GetHashCode());
+            Console.WriteLine("Проверка на равенство HashCode окружностей: {0}", 
+                Cirle1.GetHashCode() == Cirle3.GetHashCode());
             Console.WriteLine("Проверка на равенство Equals окружностей: {0}", Cirle1.Equals(Cirle3));
 
             var Rectangle1 = new Shapes.Rectangle(2, 8);
@@ -78,7 +80,8 @@ namespace Shape
 
             var MaxElement = Shapes.Length - 1;
 
-            Console.WriteLine("Фигура с максимальной площадью - {0}, площадь {1:f2}", Shapes[MaxElement] ,Shapes[MaxElement].GetArea());
+            Console.WriteLine("Фигура с максимальной площадью - {0}, площадь {1:f2}", 
+                Shapes[MaxElement] ,Shapes[MaxElement].GetArea());
         }
 
         public static void PrintShapeWithSecondLargestPerimeter(Shapes.IShape[] Shapes)

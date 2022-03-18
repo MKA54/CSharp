@@ -56,12 +56,14 @@ namespace Shape.Shapes
         {
             var triangleHalfPerimeter = GetPerimeter() / 2;
             return Math.Sqrt(triangleHalfPerimeter * (triangleHalfPerimeter - GetSegmentLength(X1, Y1, X2, Y2))
-                    * (triangleHalfPerimeter - GetSegmentLength(X2, Y2, X3, Y3)) * (triangleHalfPerimeter - GetSegmentLength(X3, Y3, X1, Y1)));
+                    * (triangleHalfPerimeter - GetSegmentLength(X2, Y2, X3, Y3)) * 
+                    (triangleHalfPerimeter - GetSegmentLength(X3, Y3, X1, Y1)));
         }
 
         public double GetHeight() => Math.Max(Math.Max(Y1, Y2), Y3) - Math.Min(Math.Min(Y1, Y2), Y3);
 
-        public double GetPerimeter() => GetSegmentLength(X1, Y1, X2, Y2) + GetSegmentLength(X2, Y2, X3, Y3) + GetSegmentLength(X3, Y3, X1, Y1);
+        public double GetPerimeter() => GetSegmentLength(X1, Y1, X2, Y2) + 
+            GetSegmentLength(X2, Y2, X3, Y3) + GetSegmentLength(X3, Y3, X1, Y1);
 
         public double GetWidth() => Math.Max(Math.Max(X1, X2), X3) - Math.Min(Math.Min(X1, X2), X3);
 
