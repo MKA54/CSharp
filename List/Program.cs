@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace List
 {
@@ -10,50 +6,50 @@ namespace List
     {
         static void Main()
         {
-            List.SinglyLinkedList<string> NamesList = new List.SinglyLinkedList<string>("Петр");
+            List.SinglyLinkedList<string> namesList = new List.SinglyLinkedList<string>("Петр");
 
-            NamesList.Add("Андрей");
-            NamesList.Add("Степан");
-            NamesList.Add("Владимир");
-            NamesList.Add("Константин");
-            NamesList.Add(null);
-            NamesList.Add("Василий");
-            NamesList.Add("Григорий");
+            namesList.Add("Андрей");
+            namesList.Add("Степан");
+            namesList.Add("Владимир");
+            namesList.Add("Константин");
+            namesList.Add(null);
+            namesList.Add("Василий");
+            namesList.Add("Григорий");
 
-            Console.WriteLine("Список: " + NamesList.ToString());
+            Console.WriteLine("Список: " + namesList.ToString());
 
-            Console.WriteLine("Размер списка: " + NamesList.GetSize());
+            Console.WriteLine("Размер списка: " + namesList.GetSize());
 
-            Console.WriteLine("Первое значение списка: " + NamesList.GetFirstData());
+            Console.WriteLine("Первое значение списка: " + namesList.GetFirstData());
 
-            string Name = NamesList.GetDataByIndex(6);
+            string name = namesList.GetDataByIndex(6);
 
-            Console.WriteLine("Полученное значение по индексу: " + Name);
+            Console.WriteLine("Полученное значение по индексу: " + name);
 
-            string OldData = NamesList.SetDataByIndex(6, "Роман");
-            Console.WriteLine("Старое значение по индексу: " + OldData);
+            string oldData = namesList.SetDataByIndex(6, "Роман");
+            Console.WriteLine("Старое значение по индексу: " + oldData);
 
-            Console.WriteLine("Список: " + NamesList);
+            Console.WriteLine("Список: " + namesList);
 
-            OldData = NamesList.DeleteByIndex(2);
-            Console.WriteLine("Удаленное значение по индексу: " + OldData);
+            oldData = namesList.DeleteByIndex(2);
+            Console.WriteLine("Удаленное значение по индексу: " + oldData);
 
-            NamesList.AddFirst("Виктор");
-            Console.WriteLine("Список: " + NamesList);
+            namesList.AddFirst("Виктор");
+            Console.WriteLine("Список: " + namesList);
 
-            NamesList.InsertByIndex(7, "Глеб");
-            Console.WriteLine("Список: " + NamesList);
+            namesList.InsertByIndex(7, "Глеб");
+            Console.WriteLine("Список: " + namesList);
 
-            bool IsDeleted = NamesList.DeleteByData("Владимир");
-            Console.WriteLine("Узел удален: " + IsDeleted);
+            bool isDeleted = namesList.DeleteByData("Владимир");
+            Console.WriteLine("Узел удален: " + isDeleted);
 
-            OldData = NamesList.DeleteFirst();
-            Console.WriteLine("Удаленное значение: " + OldData);
+            oldData = namesList.DeleteFirst();
+            Console.WriteLine("Удаленное значение: " + oldData);
 
-            NamesList.Reverse();
-            Console.WriteLine("Список: " + NamesList);
+            namesList.Reverse();
+            Console.WriteLine("Список: " + namesList);
 
-            List.SinglyLinkedList<string> Copy = NamesList.Copy();
+            List.SinglyLinkedList<string> Copy = namesList.Copy();
             Console.WriteLine("Копия списка: " + Copy);
         }
     }

@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Range
 {
@@ -30,7 +26,7 @@ namespace Range
             Console.WriteLine("Разность 2 интервалов: ");
             foreach (Range r in difference)
             {
-                Console.WriteLine(r.ToString()) ;
+                Console.WriteLine(r.ToString());
             }
         }
     }

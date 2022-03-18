@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Vector
 {
@@ -10,97 +6,97 @@ namespace Vector
     {
         static void Main()
         {
-            var Vector1 = new Vector(4);
-            Console.WriteLine("Конструктор Vector(n): " + Vector1);
+            var vector1 = new Vector(4);
+            Console.WriteLine("Конструктор Vector(n): " + vector1);
 
-            var Coordinates = new double[] {3, 5, 3, 5, 2, 1, 6};
+            var coordinates = new double[] { 3, 5, 3, 5, 2, 1, 6 };
 
-            var Vector2 = new Vector(Coordinates);
-            Console.WriteLine("Конструктор Vector(double[]): " + Vector2);
+            var vector2 = new Vector(coordinates);
+            Console.WriteLine("Конструктор Vector(double[]): " + vector2);
 
-            var Vector3 = new Vector(Vector2);
-            Console.WriteLine("Конструктор Vector(Vector): " + Vector3);
+            var vector3 = new Vector(vector2);
+            Console.WriteLine("Конструктор Vector(Vector): " + vector3);
 
-            var Vector4 = new Vector(10, Coordinates);
-            Console.WriteLine("Конструктор Vector(n, double[]): " + Vector4);
+            var vector4 = new Vector(10, coordinates);
+            Console.WriteLine("Конструктор Vector(n, double[]): " + vector4);
 
-            Vector2.Add(Vector4);
-            Console.WriteLine("Вектор после сложения: " + Vector2);
+            vector2.Add(vector4);
+            Console.WriteLine("Вектор после сложения: " + vector2);
 
-            var Vector5 = new Vector(new double[]
+            var vector5 = new Vector(new double[]
             {
                 4, 5, 3, 9 , 0, -4, 5, 8, 9, 12, 33, 12
             });
 
-            Vector2.Subtract(Vector5);
-            Console.WriteLine("Вектор после вычитания: " + Vector2);
+            vector2.Subtract(vector5);
+            Console.WriteLine("Вектор после вычитания: " + vector2);
 
-            Vector2.MultiplyByScalar(2);
-            Console.WriteLine("Вектор после умножения на скаляр: " + Vector2);
+            vector2.MultiplyByScalar(2);
+            Console.WriteLine("Вектор после умножения на скаляр: " + vector2);
 
-            Vector2.Reverse();
-            Console.WriteLine("Вектор после разворота: " + Vector2);
+            vector2.Reverse();
+            Console.WriteLine("Вектор после разворота: " + vector2);
 
-            Console.WriteLine("Длина вектора: " + Vector2.GetLength());
+            Console.WriteLine("Длина вектора: " + vector2.GetLength());
 
-            var Index = 3;
-            Console.WriteLine("Координата вектора {0}, по индексу {1}", 
-                Vector2.GetCoordinateByIndex(Index), Index);
+            var index = 3;
+            Console.WriteLine("Координата вектора {0}, по индексу {1}",
+                vector2.GetCoordinateByIndex(index), index);
 
-            Vector2.SetCoordinateByIndex(Index, 33);
-            Console.WriteLine("Координата вектора {0}, по индексу {1}", 
-                Vector2.GetCoordinateByIndex(Index), Index);
+            vector2.SetCoordinateByIndex(index, 33);
+            Console.WriteLine("Координата вектора {0}, по индексу {1}",
+                vector2.GetCoordinateByIndex(index), index);
 
-            var Vector6 = new Vector(new double[]
+            var vector6 = new Vector(new double[]
             {
                 5, 0, -4, 3, 6, 9
             });
 
-            var Vector7 = new Vector(new double[]
+            var vector7 = new Vector(new double[]
             {
                 5, 0, -4, 3, 6, 9, 10
             });
 
-            var Vector8 = new Vector(new double[]
+            var vector8 = new Vector(new double[]
             {
                 5, 0, 2, 3, 6, 9
             });
-            
-            var Vector9 = new Vector(new double[]
+
+            var vector9 = new Vector(new double[]
             {
                 5, 0, -4, 3, 6, 9
             });
 
-            var Vector10 = new Vector(new double[]
+            var vector10 = new Vector(new double[]
             {
                 5, 0, 2, 3, 6, 9
             });
 
             Console.WriteLine();
-            Console.WriteLine("Сравнение векторов по HachCode: {0}", 
-                Vector6.GetHashCode() == Vector7.GetHashCode());
-            Console.WriteLine("Сравнение векторов по HachCode: {0}", 
-                Vector6.GetHashCode() == Vector8.GetHashCode());
-            Console.WriteLine("Сравнение векторов по HachCode: {0}", 
-                Vector6.GetHashCode() == Vector9.GetHashCode());
-            Console.WriteLine("Сравнение векторов по HachCode: {0}", 
-                Vector6.GetHashCode() == Vector10.GetHashCode());
+            Console.WriteLine("Сравнение векторов по HachCode: {0}",
+                vector6.GetHashCode() == vector7.GetHashCode());
+            Console.WriteLine("Сравнение векторов по HachCode: {0}",
+                vector6.GetHashCode() == vector8.GetHashCode());
+            Console.WriteLine("Сравнение векторов по HachCode: {0}",
+                vector6.GetHashCode() == vector9.GetHashCode());
+            Console.WriteLine("Сравнение векторов по HachCode: {0}",
+                vector6.GetHashCode() == vector10.GetHashCode());
 
             Console.WriteLine();
-            Console.WriteLine("Сравнение векторов по Equals: {0}", Vector6.Equals(Vector7));
-            Console.WriteLine("Сравнение векторов по Equals: {0}", Vector6.Equals(Vector8));
-            Console.WriteLine("Сравнение векторов по Equals: {0}", Vector6.Equals(Vector9));
-            Console.WriteLine("Сравнение векторов по Equals: {0}", Vector6.Equals(Vector10));
+            Console.WriteLine("Сравнение векторов по Equals: {0}", vector6.Equals(vector7));
+            Console.WriteLine("Сравнение векторов по Equals: {0}", vector6.Equals(vector8));
+            Console.WriteLine("Сравнение векторов по Equals: {0}", vector6.Equals(vector9));
+            Console.WriteLine("Сравнение векторов по Equals: {0}", vector6.Equals(vector10));
             Console.WriteLine();
 
-            var Vector11 = Vector.GetSum(Vector7,Vector8);
-            Console.WriteLine("Сумма векторов: " + Vector11);
+            var vector11 = Vector.GetSum(vector7, vector8);
+            Console.WriteLine("Сумма векторов: " + vector11);
 
-            var Vector12 = Vector.GetDifference(Vector11, Vector7);
-            Console.WriteLine("Разница векторов: " + Vector12);
+            var vector12 = Vector.GetDifference(vector11, vector7);
+            Console.WriteLine("Разница векторов: " + vector12);
 
-            var ScalarProduct = Vector.GetScalarProduct(Vector11, Vector8);
-            Console.WriteLine("Скалярный продукт векторов: " + ScalarProduct);
+            var scalarProduct = Vector.GetScalarProduct(vector11, vector8);
+            Console.WriteLine("Скалярный продукт векторов: " + scalarProduct);
         }
     }
 }

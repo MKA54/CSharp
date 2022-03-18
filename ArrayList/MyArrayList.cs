@@ -9,13 +9,28 @@ namespace ArrayList
 {
     internal class MyArrayList<T> : IList<T>
     {
+        public MyArrayList()
+        {
+            Items = new T[10];
+        }
+
+        public MyArrayList(ICollection collection)
+        {
+            Items = new T[collection.Count];
+            Items.CopyTo((Array)collection, 0);
+
+            Lenght = collection.Count;
+        }
+
+        public MyArrayList(int initialCapacity)
+        {
+            Items = new T[initialCapacity];
+        }
+
         public T[] Items
         {
-            get => Items;      
-            set
-            {
-                Items = new T[10];
-            }
+            get;
+            set;
         }
 
         public int Lenght
@@ -36,19 +51,19 @@ namespace ArrayList
 
         public void IncreaseCapacity()
         {
-            T[] Old = Items;
-            Items = new T[Old.Length * 2];
-            Array.Copy(Old, 0, Items, 0, Old.Length);
+            T[] old = Items;
+            Items = new T[old.Length * 2];
+            Array.Copy(old, 0, Items, 0, old.Length);
         }
 
-        public void Add(T Item)
+        public void Add(T item)
         {
-            if(Lenght >= Items.Length)
+            if (Lenght >= Items.Length)
             {
                 IncreaseCapacity();
             }
 
-            Items[Lenght] = Item;
+            Items[Lenght] = item;
 
             Lenght++;
         }
@@ -88,9 +103,14 @@ namespace ArrayList
             throw new NotImplementedException();
         }
 
-        public void RemoveAt(int index)
+        public void RemoveAt(int Index)
         {
-            
+            if (Index < Lenght - 1)
+            {
+                Array.Copy(Items, Index + 1, Items, Index, Lenght - Index - 1);
+            }
+
+            Lenght--;
         }
 
         IEnumerator IEnumerable.GetEnumerator()

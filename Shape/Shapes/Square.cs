@@ -1,18 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Shape.Shapes
 {
     internal class Square : IShape
     {
-        private const double Epsilon = 1.0e-10;
-
-        public Square(double SideLength)
+        public Square(double sideLength)
         {
-            this.SideLength = SideLength;
+            SideLength = sideLength;
         }
 
         public double SideLength
@@ -26,9 +20,8 @@ namespace Shape.Shapes
 
         public double GetPerimeter()
         {
-            const int SidesCount = 4;
-            return SideLength * SidesCount;
-
+            const int sidesCount = 4;
+            return SideLength * sidesCount;
         }
 
         public double GetWidth() => SideLength;
@@ -38,29 +31,29 @@ namespace Shape.Shapes
             return string.Format("Квадрат с длиной стороны: {0}", SideLength);
         }
 
-        public override bool Equals(object Obj)
+        public override bool Equals(object obj)
         {
-           if (ReferenceEquals(Obj, this))
+            if (ReferenceEquals(obj, this))
             {
                 return true;
             }
 
-           if (ReferenceEquals(Obj, null) || Obj.GetType() != this.GetType())
+            if (ReferenceEquals(obj, null) || obj.GetType() != this.GetType())
             {
                 return false;
             }
 
-           Square Square = (Square)Obj;
+            var square = (Square)obj;
 
-           return Math.Abs(Square.SideLength - SideLength) <= Epsilon;
+            return Math.Abs(square.SideLength - SideLength) <= Constans.Epsilon;
         }
 
         public override int GetHashCode()
         {
-            var Prime = 37;
-            var Hash = 1;
+            var prime = 37;
+            var hash = 1;
 
-            return Prime * Hash + SideLength.GetHashCode();
+            return prime * hash + SideLength.GetHashCode();
         }
     }
 }

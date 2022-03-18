@@ -1,17 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Shape.Shapes
 {
     internal class Circle : IShape
     {
-        private const double Epsilon = 1.0e-10;
-        public Circle(double Radius)
+        public Circle(double radius)
         {
-            this.Radius = Radius;
+            Radius = radius;
         }
 
         public double Radius
@@ -23,7 +18,10 @@ namespace Shape.Shapes
 
         public double GetHeight() => 2 * Radius;
 
-        public double GetPerimeter() => 2 * Math.PI * Radius;
+        public double GetPerimeter()
+        {
+            return 2 * Math.PI * Radius;
+        }
 
         public double GetWidth() => 2 * Radius;
 
@@ -32,29 +30,29 @@ namespace Shape.Shapes
             return string.Format("Окружность с радиусом: {0}", Radius);
         }
 
-        public override bool Equals(object Obj)
+        public override bool Equals(object obj)
         {
-            if (ReferenceEquals(Obj, this))
+            if (ReferenceEquals(obj, this))
             {
                 return true;
             }
 
-            if (ReferenceEquals(Obj, null) || Obj.GetType() != this.GetType())
+            if (ReferenceEquals(obj, null) || obj.GetType() != this.GetType())
             {
                 return false;
             }
 
-            Circle Circle = (Circle)Obj;
+            var circle = (Circle)obj;
 
-            return Math.Abs(Circle.Radius - Radius) <= Epsilon;
+            return Math.Abs(circle.Radius - Radius) <= Constans.Epsilon;
         }
 
         public override int GetHashCode()
         {
-            var Prime = 37;
-            var Hash = 1;
+            var prime = 37;
+            var hash = 1;
 
-            return Prime * Hash + Radius.GetHashCode();
+            return prime * hash + Radius.GetHashCode();
         }
     }
 }

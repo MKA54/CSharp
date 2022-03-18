@@ -1,25 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Shape.Shapes;
 
 namespace Shape
 {
-    internal class PerimeterComparator : IComparer<Shapes.IShape>
+    internal class PerimeterComparator : IComparer<IShape>
     {
-        public int Compare(Shapes.IShape S1, Shapes.IShape S2)
+        public int Compare(IShape s1, IShape s2)
         {
-            if (S1 is null || S2 is null)
+            if (s1 is null || s2 is null)
             {
                 throw new ArgumentException("Некорректное значение параметра");
             }
 
-            if ((S1.GetPerimeter() - S2.GetPerimeter()) > double.Epsilon)
+            if ((s1.GetPerimeter() - s2.GetPerimeter()) > Constans.Epsilon)
             {
                 return 1;
             }
-            else if ((S2.GetPerimeter()) - S1.GetPerimeter() > double.Epsilon)
+            else if ((s2.GetPerimeter()) - s1.GetPerimeter() > Constans.Epsilon)
             {
                 return -1;
             }

@@ -1,14 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Range
 {
     internal class Range
     {
-        private const double Epsilon = 1.0e-10;
         public Range(double from, double to)
         {
             From = Math.Min(from, to);
@@ -27,15 +22,11 @@ namespace Range
 
         public double Length => Math.Abs(To - From);
 
-        private static bool IsDoubleEquals(double arg1, double arg2) => Math.Abs(arg1 - arg2) <= Epsilon;
-        private static bool IsFirstDoubleMore(double arg1, double arg2) => arg1 - arg2 > Epsilon;
+        private static bool IsDoubleEquals(double arg1, double arg2) => Math.Abs(arg1 - arg2) <= Constans.Epsilon;
+        private static bool IsFirstDoubleMore(double arg1, double arg2) => arg1 - arg2 > Constans.Epsilon;
 
-        public bool IsInside(double point)
-        {
-            return IsFirstDoubleMore(point, From) && IsFirstDoubleMore(To, point) || 
-                IsDoubleEquals(From, point) ||
-                IsDoubleEquals(To, point);
-        }
+        public bool IsInside(double point) => IsFirstDoubleMore(point, From) && IsFirstDoubleMore(To, point)
+            || IsDoubleEquals(From, point) || IsDoubleEquals(To, point);
 
         public Range GetIntersection(Range range)
         {

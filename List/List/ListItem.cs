@@ -1,22 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace List.List
+﻿namespace List.List
 {
     internal class ListItem<T>
     {
-        public ListItem(T Data)
+        public ListItem(T data)
         {
-            this.Data = Data;
+            Data = data;
         }
 
-        public ListItem(T Data, ListItem<T> Next)
+        public ListItem(T data, ListItem<T> next)
         {
-            this.Data = Data;
-            this.Next = Next;
+            Data = data;
+            Next = next;
         }
 
         public T Data

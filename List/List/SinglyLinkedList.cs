@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace List.List
 {
@@ -10,8 +7,9 @@ namespace List.List
     {
         public SinglyLinkedList() { }
 
-        public SinglyLinkedList(T Data) {
-            Head = new List.ListItem<T>(Data);
+        public SinglyLinkedList(T data)
+        {
+            Head = new ListItem<T>(data);
             ++Size;
         }
 
@@ -29,9 +27,9 @@ namespace List.List
 
         public int GetSize() => Size;
 
-        public void Add(T Data)
+        public void Add(T data)
         {
-            InsertByIndex(Size, Data);
+            InsertByIndex(Size, data);
         }
 
         public T GetFirstData()
@@ -41,12 +39,12 @@ namespace List.List
             return Head.Data;
         }
 
-        private void CheckIndex(int Index)
+        private void CheckIndex(int index)
         {
-            if (Index < 0 || Index >= Size)
+            if (index < 0 || index >= Size)
             {
-                throw new IndexOutOfRangeException("Index must be from 0 to " + (Size - 1) + 
-                    ". Index = " + Index);
+                throw new IndexOutOfRangeException("Index must be from 0 to " + (Size - 1) +
+                    ". Index = " + index);
             }
         }
 
@@ -58,115 +56,112 @@ namespace List.List
             }
         }
 
-        private ListItem<T> GetByIndex(int Index)
+        private ListItem<T> GetByIndex(int index)
         {
-            CheckIndex(Index);
+            CheckIndex(index);
 
-            ListItem<T> Item = null;
-            int I = 0;
+            ListItem<T> item = null;
+            int i = 0;
 
-            for (var Current = Head; Current != null; Current = Current.Next)
+            for (var current = Head; current != null; current = current.Next)
             {
-                if (Index == I)
+                if (index == i)
                 {
-                    Item = Current;
+                    item = current;
 
                     break;
                 }
 
-                ++I;
+                ++i;
             }
 
-            return Item;
+            return item;
         }
 
-        public T GetDataByIndex(int Index)
+        public T GetDataByIndex(int index) => GetByIndex(index).Data;
+
+        public T SetDataByIndex(int index, T data)
         {
-            return GetByIndex(Index).Data;
+            var item = GetByIndex(index);
+
+            T oldData = item.Data;
+
+            item.Data = data;
+
+            return oldData;
         }
 
-        public T SetDataByIndex(int Index, T Data)
+        public T DeleteByIndex(int index)
         {
-            var Item = GetByIndex(Index);
+            CheckIndex(index);
 
-            T OldData = Item.Data;
-
-            Item.Data = Data;
-
-            return OldData;
-        }
-
-        public T DeleteByIndex(int Index)
-        {
-            CheckIndex(Index);
-
-            if (Index == 0)
+            if (index == 0)
             {
                 return DeleteFirst();
             }
 
-            var Previous = GetByIndex(Index - 1);
-            var Current = Previous.Next;
+            var previous = GetByIndex(index - 1);
+            var current = previous.Next;
 
-            T Data = Current.Data;
+            T data = current.Data;
 
-            Previous.Next = Current.Next;
+            previous.Next = current.Next;
 
             --Size;
 
-            return Data;
+            return data;
         }
 
-        public void AddFirst(T Data)
+        public void AddFirst(T data)
         {
-            Head = new ListItem<T>(Data, Head);
+            Head = new ListItem<T>(data, Head);
 
             ++Size;
         }
 
-        public void InsertByIndex(int Index, T Data)
+        public void InsertByIndex(int index, T data)
         {
-            if (Size != Index)
+            if (Size != index)
             {
-                CheckIndex(Index);
+                CheckIndex(index);
             }
 
-            if (Index == 0)
+            if (index == 0)
             {
-                AddFirst(Data);
+                AddFirst(data);
 
                 return;
             }
 
-            var NewItem = new ListItem<T>(Data);
-            var Previous = GetByIndex(Index - 1);
+            var newItem = new ListItem<T>(data);
+            var previous = GetByIndex(index - 1);
 
-            NewItem.Next = Previous.Next;
-            Previous.Next = NewItem;
+            newItem.Next = previous.Next;
+            previous.Next = newItem;
 
             ++Size;
         }
 
-        public bool DeleteByData(T Data)
+        public bool DeleteByData(T data)
         {
             if (Size == 0)
             {
                 return false;
             }
 
-            if (Equals(Head.Data, Data))
+            if (Equals(Head.Data, data))
             {
                 DeleteFirst();
 
                 return true;
             }
 
-            for (ListItem<T> Current = Head.Next, Previous = Head; Current != null; 
-                Previous = Current, Current = Current.Next)
+            for (ListItem<T> current = Head.Next, previous = Head; current != null;
+                previous = current, current = current.Next)
             {
-                if (Equals(Data, Current.Data))
+                if (Equals(data, current.Data))
                 {
-                    Previous.Next = Current.Next;
+                    previous.Next = current.Next;
 
                     --Size;
 
@@ -181,30 +176,30 @@ namespace List.List
         {
             CheckListSize();
 
-            T Data = Head.Data;
+            T data = Head.Data;
 
             Head = Head.Next;
 
             Size--;
 
-            return Data;
+            return data;
         }
 
         public void Reverse()
         {
-            ListItem<T> Previous = null;
-            ListItem<T> Current = Head;
+            ListItem<T> previous = null;
+            ListItem<T> current = Head;
 
-            while (Current != null)
+            while (current != null)
             {
-                ListItem<T> next = Current.Next;
+                ListItem<T> next = current.Next;
 
-                Current.Next = Previous;
-                Previous = Current;
-                Current = next;
+                current.Next = previous;
+                previous = current;
+                current = next;
             }
 
-            Head = Previous;
+            Head = previous;
         }
 
         public SinglyLinkedList<T> Copy()
@@ -214,22 +209,21 @@ namespace List.List
                 return new SinglyLinkedList<T>();
             }
 
-            SinglyLinkedList<T> Copy = new SinglyLinkedList<T>(Head.Data);
+            SinglyLinkedList<T> copy = new SinglyLinkedList<T>(Head.Data);
 
-            for (ListItem<T> Current = Head.Next, CurrentCopy = Copy.Head; Current != null; 
-                Current = Current.Next, CurrentCopy = CurrentCopy.Next)
+            for (ListItem<T> current = Head.Next, currentCopy = copy.Head; current != null;
+                current = current.Next, currentCopy = currentCopy.Next)
             {
-                ListItem<T> ItemCopy = new ListItem<T>(Current.Data);
+                ListItem<T> itemCopy = new ListItem<T>(current.Data);
 
-                CurrentCopy.Next = ItemCopy;
+                currentCopy.Next = itemCopy;
             }
 
-            Copy.Size = Size;
+            copy.Size = Size;
 
-            return Copy;
+            return copy;
         }
 
-      
         public override String ToString()
         {
             if (Size == 0)
@@ -237,26 +231,26 @@ namespace List.List
                 return "{}";
             }
 
-            StringBuilder StringBuilder = new StringBuilder();
+            StringBuilder stringBuilder = new StringBuilder();
 
-            StringBuilder.Append("{");
+            stringBuilder.Append("{");
 
-            for (var Current = Head; Current != null; Current = Current.Next)
+            for (var current = Head; current != null; current = current.Next)
             {
-                if(Current.Data == null)
+                if (current.Data == null)
                 {
-                    StringBuilder.Append("null").Append(", ");
+                    stringBuilder.Append("null").Append(", ");
                     continue;
                 }
 
-                StringBuilder.Append(Current.Data).Append(", ");
+                stringBuilder.Append(current.Data).Append(", ");
             }
 
-            StringBuilder.Remove(StringBuilder.Length - 2, 2);
+            stringBuilder.Remove(stringBuilder.Length - 2, 2);
 
-            StringBuilder.Append("}");
+            stringBuilder.Append("}");
 
-            return StringBuilder.ToString();
+            return stringBuilder.ToString();
         }
     }
 }

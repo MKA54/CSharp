@@ -1,19 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Shape.Shapes
 {
     internal class Rectangle : IShape
     {
-        private const double Epsilon = 1.0e-10;
-
-        public Rectangle(double Width, double Height)
+        public Rectangle(double width, double height)
         {
-            this.Width = Width;
-            this.Height = Height;
+            Width = width;
+            Height = height;
         }
         public double Width
         {
@@ -29,7 +23,10 @@ namespace Shape.Shapes
 
         public double GetHeight() => Height;
 
-        public double GetPerimeter() => (Width + Height) * 2;
+        public double GetPerimeter()
+        {
+            return (Width + Height) * 2;
+        }
 
         public double GetWidth() => Width;
 
@@ -38,33 +35,33 @@ namespace Shape.Shapes
             return string.Format("Прямоугольник с размерами: ширина-{0}, длина-{1}", Width, Height);
         }
 
-        private static bool IsDoubleEquals(double arg1, double arg2) => Math.Abs(arg1 - arg2) <= Epsilon;
+        private static bool IsDoubleEquals(double arg1, double arg2) => Math.Abs(arg1 - arg2) <= Constans.Epsilon;
 
-        public override bool Equals(object Obj)
+        public override bool Equals(object obj)
         {
-            if (ReferenceEquals(Obj, this))
+            if (ReferenceEquals(obj, this))
             {
                 return true;
             }
 
-            if (ReferenceEquals(Obj, null) || Obj.GetType() != this.GetType())
+            if (ReferenceEquals(obj, null) || obj.GetType() != this.GetType())
             {
                 return false;
             }
 
-            Rectangle Rectangle = (Rectangle)Obj;
+            var rectangle = (Rectangle)obj;
 
-            return IsDoubleEquals(Rectangle.Width, Width)  && IsDoubleEquals(Rectangle.Height, Height);
+            return IsDoubleEquals(rectangle.Width, Width) && IsDoubleEquals(rectangle.Height, Height);
         }
 
         public override int GetHashCode()
         {
-            var Prime = 37;
-            var Hash = 1;
+            var prime = 37;
+            var hash = 1;
 
-            Hash = Prime * Hash + Width.GetHashCode();
+            hash = prime * hash + Width.GetHashCode();
 
-            return Prime * Hash + Height.GetHashCode();
+            return prime * hash + Height.GetHashCode();
         }
     }
 }

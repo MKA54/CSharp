@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Shape.Shapes;
 
 namespace Shape
 {
@@ -10,87 +7,87 @@ namespace Shape
     {
         static void Main()
         {
-            var Shapes = new Shapes.IShape[]{ new Shapes.Circle(4), 
-                new Shapes.Triangle(2,3,-4, 5, -4, 8), 
-                new Shapes.Rectangle(3, 5), 
-                new Shapes.Circle(6), 
-                new Shapes.Square(6), 
-                new Shapes.Circle(5),
-                new Shapes.Triangle(4, 5,3,8,6,3),
-                new Shapes.Square(2), 
-                new Shapes.Circle(10) };
+            var shapes = new IShape[]{ new Circle(4),
+                new Triangle(2,3,-4, 5, -4, 8),
+                new Rectangle(3, 5),
+                new Circle(6),
+                new Square(6),
+                new Circle(5),
+                new Triangle(4, 5,3,8,6,3),
+                new Square(2),
+                new Circle(10) };
 
-            PrintShapeWithMaxArea(Shapes);
-            PrintShapeWithSecondLargestPerimeter(Shapes);
+            PrintShapeWithMaxArea(shapes);
+            PrintShapeWithSecondLargestPerimeter(shapes);
 
-            var Triangle1 = new Shapes.Triangle(2, 8, 4, 3, 2, 1);
-            var Triangle2 = new Shapes.Triangle(4, 3, 4, 3, 2, 1);
-            var Triangle3 = new Shapes.Triangle(2, 8, 4, 3, 2, 1);
+            var triangle1 = new Triangle(2, 8, 4, 3, 2, 1);
+            var triangle2 = new Triangle(4, 3, 4, 3, 2, 1);
+            var triangle3 = new Triangle(2, 8, 4, 3, 2, 1);
 
-            Console.WriteLine("Проверка на равенство HashCode треугольников: {0}", 
-                Triangle1.GetHashCode() == Triangle2.GetHashCode());
-            Console.WriteLine("Проверка на равенство Equals треугольников: {0}", 
-                Triangle1.Equals(Triangle2));
-            Console.WriteLine("Проверка на равенство HashCode треугольников: {0}", 
-                Triangle1.GetHashCode() == Triangle3.GetHashCode());
-            Console.WriteLine("Проверка на равенство Equals треугольников: {0}", 
-                Triangle1.Equals(Triangle3));
+            Console.WriteLine("Проверка на равенство HashCode треугольников: {0}",
+                triangle1.GetHashCode() == triangle2.GetHashCode());
+            Console.WriteLine("Проверка на равенство Equals треугольников: {0}",
+                triangle1.Equals(triangle2));
+            Console.WriteLine("Проверка на равенство HashCode треугольников: {0}",
+                triangle1.GetHashCode() == triangle3.GetHashCode());
+            Console.WriteLine("Проверка на равенство Equals треугольников: {0}",
+                triangle1.Equals(triangle3));
 
-            var Cirle1 = new Shapes.Circle(8);
-            var Cirle2 = new Shapes.Circle(7);
-            var Cirle3 = new Shapes.Circle(8);
+            var cirle1 = new Circle(8);
+            var cirle2 = new Circle(7);
+            var cirle3 = new Circle(8);
 
-            Console.WriteLine("Проверка на равенство HashCode окружностей: {0}", 
-                Cirle1.GetHashCode() == Cirle2.GetHashCode());
-            Console.WriteLine("Проверка на равенство Equals окружностей: {0}", Cirle1.Equals(Cirle2));
-            Console.WriteLine("Проверка на равенство HashCode окружностей: {0}", 
-                Cirle1.GetHashCode() == Cirle3.GetHashCode());
-            Console.WriteLine("Проверка на равенство Equals окружностей: {0}", Cirle1.Equals(Cirle3));
+            Console.WriteLine("Проверка на равенство HashCode окружностей: {0}",
+                cirle1.GetHashCode() == cirle2.GetHashCode());
+            Console.WriteLine("Проверка на равенство Equals окружностей: {0}", cirle1.Equals(cirle2));
+            Console.WriteLine("Проверка на равенство HashCode окружностей: {0}",
+                cirle1.GetHashCode() == cirle3.GetHashCode());
+            Console.WriteLine("Проверка на равенство Equals окружностей: {0}", cirle1.Equals(cirle3));
 
-            var Rectangle1 = new Shapes.Rectangle(2, 8);
-            var Rectangle2 = new Shapes.Rectangle(4, 8);
-            var Rectangle3 = new Shapes.Rectangle(2, 8);
+            var rectangle1 = new Rectangle(2, 8);
+            var rectangle2 = new Rectangle(4, 8);
+            var rectangle3 = new Rectangle(2, 8);
 
-            Console.WriteLine("Проверка на равенство HashCode прямоугольников: {0}", 
-                Rectangle1.GetHashCode() == Rectangle2.GetHashCode());
-            Console.WriteLine("Проверка на равенство Equals прямоугольников: {0}", 
-                Rectangle1.Equals(Rectangle2));
-            Console.WriteLine("Проверка на равенство HashCode прямоугольников: {0}", 
-                Rectangle1.GetHashCode() == Rectangle3.GetHashCode());
-            Console.WriteLine("Проверка на равенство Equals прямоугольников: {0}", 
-                Rectangle1.Equals(Rectangle3));
+            Console.WriteLine("Проверка на равенство HashCode прямоугольников: {0}",
+                rectangle1.GetHashCode() == rectangle2.GetHashCode());
+            Console.WriteLine("Проверка на равенство Equals прямоугольников: {0}",
+                rectangle1.Equals(rectangle2));
+            Console.WriteLine("Проверка на равенство HashCode прямоугольников: {0}",
+                rectangle1.GetHashCode() == rectangle3.GetHashCode());
+            Console.WriteLine("Проверка на равенство Equals прямоугольников: {0}",
+                rectangle1.Equals(rectangle3));
 
-            var Square1 = new Shapes.Square(2);
-            var Square2 = new Shapes.Square(3);
-            var Square3 = new Shapes.Square(2);
+            var square1 = new Square(2);
+            var square2 = new Square(3);
+            var square3 = new Square(2);
 
-            Console.WriteLine("Проверка на равенство HashCode квадратов: {0}", 
-                Square1.GetHashCode() == Square2.GetHashCode());
-            Console.WriteLine("Проверка на равенство Equals квадратов: {0}", 
-                Square1.Equals(Square2));
-            Console.WriteLine("Проверка на равенство HashCode квадратов: {0}", 
-                Square1.GetHashCode() == Square3.GetHashCode());
-            Console.WriteLine("Проверка на равенство Equals квадратов: {0}", 
-                Square1.Equals(Square3));
+            Console.WriteLine("Проверка на равенство HashCode квадратов: {0}",
+                square1.GetHashCode() == square2.GetHashCode());
+            Console.WriteLine("Проверка на равенство Equals квадратов: {0}",
+                square1.Equals(square2));
+            Console.WriteLine("Проверка на равенство HashCode квадратов: {0}",
+                square1.GetHashCode() == square3.GetHashCode());
+            Console.WriteLine("Проверка на равенство Equals квадратов: {0}",
+                square1.Equals(square3));
         }
 
-        public static void PrintShapeWithMaxArea (Shapes.IShape[] Shapes)
+        public static void PrintShapeWithMaxArea(IShape[] shapes)
         {
-            Array.Sort(Shapes, new AreaComparator());
+            Array.Sort(shapes, new AreaComparator());
 
-            var MaxElement = Shapes.Length - 1;
+            var maxElement = shapes.Length - 1;
 
-            Console.WriteLine("Фигура с максимальной площадью - {0}, площадь {1:f2}", 
-                Shapes[MaxElement] ,Shapes[MaxElement].GetArea());
+            Console.WriteLine("Фигура с максимальной площадью - {0}, площадь {1:f2}",
+                shapes[maxElement], shapes[maxElement].GetArea());
         }
 
-        public static void PrintShapeWithSecondLargestPerimeter(Shapes.IShape[] Shapes)
+        public static void PrintShapeWithSecondLargestPerimeter(IShape[] shapes)
         {
-            Array.Sort(Shapes, new PerimeterComparator());
-            var SecondElementAroundPerimeter = Shapes.Length - 2;
+            Array.Sort(shapes, new PerimeterComparator());
+            var SecondElementAroundPerimeter = shapes.Length - 2;
 
-            Console.WriteLine("Фигура со вторым по величине периметром - {0}, периметр {1:f2}", 
-                Shapes[SecondElementAroundPerimeter], Shapes[SecondElementAroundPerimeter].GetPerimeter());
+            Console.WriteLine("Фигура со вторым по величине периметром - {0}, периметр {1:f2}",
+                shapes[SecondElementAroundPerimeter], shapes[SecondElementAroundPerimeter].GetPerimeter());
         }
     }
 }
