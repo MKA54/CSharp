@@ -224,6 +224,7 @@ namespace List.List
             return copy;
         }
 
+
         public override String ToString()
         {
             if (Size == 0)

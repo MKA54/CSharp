@@ -55,17 +55,20 @@ namespace Range
                 return new Range[] { new Range(From, range.From), new Range(range.To, To) };
             }
 
-            if (IsFirstDoubleMore(range.From, From) && IsFirstDoubleMore(To, range.From) && (IsFirstDoubleMore(range.To, To) || IsDoubleEquals(range.To, To)))
+            if (IsFirstDoubleMore(range.From, From) && IsFirstDoubleMore(To, range.From) && 
+                (IsFirstDoubleMore(range.To, To) || IsDoubleEquals(range.To, To)))
             {
                 return new Range[] { new Range(From, range.From) };
             }
 
-            if ((IsFirstDoubleMore(range.From, From) || IsDoubleEquals(From, range.From) && IsFirstDoubleMore(To, range.To) && IsFirstDoubleMore(range.To, From)))
+            if ((IsFirstDoubleMore(range.From, From) || IsDoubleEquals(From, range.From) 
+                && IsFirstDoubleMore(To, range.To) && IsFirstDoubleMore(range.To, From)))
             {
                 return new Range[] { new Range(range.To, To) };
             }
 
-            if ((IsFirstDoubleMore(From, range.From) || IsDoubleEquals(From, range.From) && (IsFirstDoubleMore(range.To, To) || IsDoubleEquals(range.To, To))))
+            if ((IsFirstDoubleMore(From, range.From) || IsDoubleEquals(From, range.From) 
+                && (IsFirstDoubleMore(range.To, To) || IsDoubleEquals(range.To, To))))
             {
                 return new Range[0];
             }

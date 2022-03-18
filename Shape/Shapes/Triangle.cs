@@ -44,7 +44,7 @@ namespace Shape.Shapes
             get;
         }
 
-        private static double GetSegmentLength(double x1, double y1, double x2, double y2) =>
+        private static double GetSegmentLength (double x1, double y1, double x2, double y2) =>
             Math.Sqrt(Math.Pow(x1 - x2, 2) + Math.Pow(y1 - y2, 2));
 
         public double GetArea()

@@ -8,12 +8,12 @@ namespace Range
         {
             var range = new Range(3, 9);
 
-            Console.WriteLine("Длина диапазона: " + range.Length);
-            Console.WriteLine("Наличие числа в диапазоне: " + range.IsInside(2));
-            Console.WriteLine("Наличие числа в диапазоне: " + range.IsInside(7));
+            Console.WriteLine("Длина диапазона: {0}", range.Length);
+            Console.WriteLine("Наличие числа в диапазоне: {0}", range.IsInside(2));
+            Console.WriteLine("Наличие числа в диапазоне: {0}", range.IsInside(7));
 
             var intersection = range.GetIntersection(new Range(3, 8));
-            Console.WriteLine("Пересечение диапазонов:" + intersection);
+            Console.WriteLine("Пересечение диапазонов: {0}", intersection);
 
             var union = range.GetUnion(new Range(1, 4));
             Console.WriteLine("Объединение диапазонов:");
@@ -23,7 +23,7 @@ namespace Range
             }
 
             var difference = range.GetDifference(new Range(4, 6));
-            Console.WriteLine("Разность 2 интервалов: ");
+            Console.WriteLine("Разность 2 интервалов:");
             foreach (Range r in difference)
             {
                 Console.WriteLine(r.ToString());
