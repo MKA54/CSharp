@@ -106,14 +106,7 @@ namespace Vector
         {
             get
             {
-                var sum = 0.0;
-
-                for (var i = 0; i < Coordinates.Length - 1; i++)
-                {
-                    sum += Coordinates[i];
-                }
-
-                return sum;
+                return Coordinates.Sum();
             }
         }
 

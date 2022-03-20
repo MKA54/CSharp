@@ -1,10 +1,7 @@
 ﻿namespace Shape.Shapes
 {
-    internal class Constans
+    internal static class Constans
     {
-        public static double Epsilon
-        {
-            get => 1.0e-10;
-        }
+        public const double Epsilon = 1.0e-10;
     }
 }
