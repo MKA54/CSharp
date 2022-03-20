@@ -64,8 +64,8 @@ namespace Shape.Shapes
 
         public override string ToString()
         {
-            return string.Format("Треугольник с координатами: х1-{0}, y1-{1}, х2-{2}, y2-{3}, " +
-                "х3-{4}, y3-{5},", X1, Y1, X2, Y2, X3, Y3);
+            return string.Format($"Треугольник с координатами: х1-{X1}, y1-{Y1}, х2-{X2}, y2-{Y2}, " +
+                $"х3-{X3}, y3-{Y3}");
         }
 
         private static bool IsDoubleEquals(double arg1, double arg2) => Math.Abs(arg1 - arg2) <= Constans.Epsilon;

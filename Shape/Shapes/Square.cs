@@ -28,7 +28,7 @@ namespace Shape.Shapes
 
         public override string ToString()
         {
-            return string.Format("Квадрат с длиной стороны: {0}", SideLength);
+            return string.Format($"Квадрат с длиной стороны: {SideLength}");
         }
 
         public override bool Equals(object obj)

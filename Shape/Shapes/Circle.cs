@@ -27,7 +27,7 @@ namespace Shape.Shapes
 
         public override string ToString()
         {
-            return string.Format("Окружность с радиусом: {0}", Radius);
+            return string.Format($"Окружность с радиусом: {Radius}");
         }
 
         public override bool Equals(object obj)

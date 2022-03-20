@@ -25,8 +25,6 @@ namespace List.List
             set;
         }
 
-        public int GetSize() => Size;
-
         public void Add(T data)
         {
             InsertByIndex(Size, data);
@@ -43,8 +41,8 @@ namespace List.List
         {
             if (index < 0 || index >= Size)
             {
-                throw new IndexOutOfRangeException("Index must be from 0 to " + (Size - 1) +
-                    ". Index = " + index);
+                throw new IndexOutOfRangeException($"Index must be from 0 to {Size - 1}" +
+                    $". Index = {index}");
             }
         }
 

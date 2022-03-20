@@ -10,7 +10,7 @@ namespace Vector
         {
             if (size <= 0)
             {
-                throw new ArgumentException("size: " + size + " <= 0");
+                throw new ArgumentException($"size: {size} <= 0");
             }
 
             Coordinates = new double[size];
@@ -23,7 +23,7 @@ namespace Vector
         {
             if (сoordinates.Length == 0)
             {
-                throw new ArgumentException("invalid array length: " + сoordinates.Length);
+                throw new ArgumentException($"invalid array length: {сoordinates.Length}");
             }
 
             Array.Copy(сoordinates, Coordinates = new double[сoordinates.Length], сoordinates.Length);
@@ -33,12 +33,12 @@ namespace Vector
         {
             if (size <= 0)
             {
-                throw new ArgumentException("size: " + size + " <= 0");
+                throw new ArgumentException($"size: {size} <= 0");
             }
 
             if (size < coordinates.Length)
             {
-                throw new ArgumentException("size: " + size + " < Coordinates.Length");
+                throw new ArgumentException($"size: {size} < Coordinates.Length");
             }
 
             Array.Copy(coordinates, Coordinates = new double[size], coordinates.Length);
@@ -50,7 +50,13 @@ namespace Vector
             set;
         }
 
-        public int GetSize() => Coordinates.Length;
+        public int Size
+        {
+            get
+            {
+                return Coordinates.Length;
+            }
+        }
 
         private void IncreaseArraySize(int newSize)
         {
@@ -80,7 +86,7 @@ namespace Vector
                 IncreaseArraySize(vector.Coordinates.Length);
             }
 
-            for (var i = 0; i < vector.GetSize(); i++)
+            for (var i = 0; i < vector.Size; i++)
             {
                 Coordinates[i] -= vector.Coordinates[i];
             }
@@ -96,24 +102,27 @@ namespace Vector
 
         public void Reverse() => MultiplyByScalar(-1);
 
-        public double GetLength()
+        public double Length
         {
-            var sum = 0.0;
-
-            for (var i = 0; i < Coordinates.Length - 1; i++)
+            get
             {
-                sum += Coordinates[i];
-            }
+                var sum = 0.0;
 
-            return sum;
+                for (var i = 0; i < Coordinates.Length - 1; i++)
+                {
+                    sum += Coordinates[i];
+                }
+
+                return sum;
+            }
         }
 
         private void CheckIndex(int index)
         {
             if (index < 0 || index >= Coordinates.Length)
             {
-                throw new IndexOutOfRangeException("Index must be from 0 to " +
-                    (Coordinates.Length - 1) + ". Index = " + index);
+                throw new IndexOutOfRangeException($"Index must be from 0 to {Coordinates.Length - 1}" +
+                    $". Index = {index}");
             }
         }
 
@@ -153,7 +162,7 @@ namespace Vector
         {
             var result = 0.0;
 
-            var length = Math.Min(vector1.GetSize(), vector2.GetSize());
+            var length = Math.Min(vector1.Size, vector2.Size);
 
             for (var i = 0; i < length; i++)
             {

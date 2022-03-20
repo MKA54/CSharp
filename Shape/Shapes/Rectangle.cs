@@ -32,7 +32,7 @@ namespace Shape.Shapes
 
         public override string ToString()
         {
-            return string.Format("Прямоугольник с размерами: ширина-{0}, длина-{1}", Width, Height);
+            return string.Format($"Прямоугольник с размерами: ширина-{Width}, длина-{Height}");
         }
 
         private static bool IsDoubleEquals(double arg1, double arg2) => Math.Abs(arg1 - arg2) <= Constans.Epsilon;
