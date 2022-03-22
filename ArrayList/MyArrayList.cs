@@ -1,25 +1,36 @@
 ﻿using System;
+using System.Text;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ArrayList
 {
     internal class MyArrayList<T> : IList<T>
     {
+        private static readonly int DEFAULT_CAPACITY = 10;
+
         public MyArrayList()
         {
-            Items = new T[10];
+            Items = new T[DEFAULT_CAPACITY];
+
+            Console.WriteLine(Items.Length);
         }
 
         public MyArrayList(ICollection collection)
         {
-            Items = new T[collection.Count];
-            Items.CopyTo((Array)collection, 0);
+            if (collection == null)
+            {
+                throw new ArgumentNullException("Пустая коллекция");
+            }
 
-            Lenght = collection.Count;
+            Items = new T[collection.Count];
+
+            foreach (T item in collection)
+            {
+                Items[Lenght] = item;
+
+                Lenght++;
+            }
         }
 
         public MyArrayList(int initialCapacity)
@@ -27,38 +38,57 @@ namespace ArrayList
             Items = new T[initialCapacity];
         }
 
-        public T[] Items
-        {
-            get;
-            set;
-        }
+        public T[] Items { get; set; }
 
-        public int Lenght
-        {
-            get;
-            set;
-        }
+        public int Lenght { get; set; }
+
+        public int ModCount { get; set; }
 
         public T this[int index]
         {
-            get => Items[index];
-            set => Items[index] = value;
+            get
+            {
+                CheckIndex(index);
+
+                return Items[index];
+            }
+
+            set
+            {
+                CheckIndex(index);
+
+                Items[index] = value;
+            }
         }
 
         public int Count => Lenght;
 
-        public bool IsReadOnly => throw new NotImplementedException();
+        public bool IsReadOnly => false;
 
-        public void IncreaseCapacity()
+        private void IncreaseCapacity()
         {
-            T[] old = Items;
-            Items = new T[old.Length * 2];
-            Array.Copy(old, 0, Items, 0, old.Length);
+            T[] oldItems = Items;
+            Items = new T[oldItems.Length * 2];
+
+            Array.Copy(oldItems, 0, Items, 0, oldItems.Length);
+        }
+
+        private void EnsureCapacity(int minCapacity)
+        {
+            if (minCapacity > Items.Length)
+            {
+                var newArray = Items;
+                Console.WriteLine(newArray); 
+
+                Array.Resize(ref newArray, minCapacity);
+
+                Items = newArray;
+            }
         }
 
         public void Add(T item)
         {
-            if (Lenght >= Items.Length)
+            if (Lenght + 1 > Items.Length)
             {
                 IncreaseCapacity();
             }
@@ -66,41 +96,95 @@ namespace ArrayList
             Items[Lenght] = item;
 
             Lenght++;
+            ModCount++;
         }
 
         public void Clear()
         {
-            throw new NotImplementedException();
+            for (var i = 0; i < Lenght; i++)
+            {
+                Items[i] = default;
+            }
+
+            Lenght = 0;
+            ModCount++;
         }
 
-        public bool Contains(T item)
-        {
-            throw new NotImplementedException();
-        }
+        public bool Contains(T item) => IndexOf(item) >= 0;
 
         public void CopyTo(T[] array, int arrayIndex)
         {
-            throw new NotImplementedException();
+            if(array == null)
+            {
+                throw new ArgumentNullException("Добавляемая коллекция пустая");
+            }
+
+            CheckIndex(arrayIndex);
+
+            if (array.Length + Lenght > Items.Length)
+            {
+                EnsureCapacity(array.Length + Lenght);
+            }
+
+            Items.CopyTo(array, arrayIndex);
+
+            Lenght += array.Length;
+            ModCount++;
         }
 
         public IEnumerator<T> GetEnumerator()
         {
-            throw new NotImplementedException();
+            var currentMod = ModCount;
+
+            for (var i = 0; i < Lenght; i++)
+            {
+                if (currentMod != ModCount)
+                {
+                    throw new InvalidOperationException("The collection has changed");
+                }
+
+                yield return Items[i];
+            }
         }
 
         public int IndexOf(T item)
         {
-            throw new NotImplementedException();
+            for (var i = 0; i < Lenght; i++)
+            {
+                if (Equals(Items[i], item))
+                {
+                    return i;
+                }
+            }
+
+            return -1;
         }
 
         public void Insert(int index, T item)
         {
-            throw new NotImplementedException();
+            CheckIndex(index);
+
+            Items[index] = item;
+
+            ModCount++;
         }
 
         public bool Remove(T item)
         {
-            throw new NotImplementedException();
+            for (var i = 0; i < Lenght; i++)
+            {
+                if (Equals(Items[i], item))
+                {
+                    Items[i] = default;
+
+                    Lenght--;
+                    ModCount++;
+
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         public void RemoveAt(int Index)
@@ -111,11 +195,53 @@ namespace ArrayList
             }
 
             Lenght--;
+            ModCount++;
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            throw new NotImplementedException();
+            return GetEnumerator();
+        }
+
+        private void CheckIndex(int index)
+        {
+            if (index < 0 || index >= Lenght)
+            {
+                throw new ArgumentOutOfRangeException($"Index must be from 0 to {Lenght - 1}. Index = {index}");
+            }
+        }
+
+        public override string ToString()
+        {
+            if (Lenght == 0)
+            {
+                return "{}";
+            }
+
+            StringBuilder stringBuilder = new StringBuilder();
+
+            stringBuilder.Append("{");
+
+            var count = 0;
+
+            for (var i = 0; i < Items.Length; i++)
+            {
+                if (count == Lenght)
+                {
+                    break;
+                }
+
+                if (Items[i] != null)
+                {
+                    stringBuilder.Append(Items[i]).Append(", ");
+                    count++;
+                }
+            }
+
+            stringBuilder.Remove(stringBuilder.Length - 2, 2);
+            stringBuilder.Append("}");
+
+            return stringBuilder.ToString();
         }
     }
 }
