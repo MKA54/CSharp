@@ -30,6 +30,11 @@ namespace Lambdas
             {
                 Console.WriteLine(item);
             }
+
+            string allNamesString = string.Join(", ",
+                uniqueList.Select(p => p.Name)).Insert(0, "Имен: ");
+
+            Console.WriteLine($"Список уникальных {allNamesString}");
         }
     }
 }

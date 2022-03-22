@@ -20,7 +20,7 @@ namespace Lambdas
 
         public override string ToString()
         {
-            return $"Имя - {Name}, Возраст - {Age}";
+            return $"{Name} - {Age}";
         }
     }
 }
