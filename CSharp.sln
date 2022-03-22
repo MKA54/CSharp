@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "List", "List\List.csproj", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArrayList", "ArrayList\ArrayList.csproj", "{3AC380D7-69E4-46F6-BFFC-701C5BF76C02}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lambdas", "Lambdas\Lambdas.csproj", "{75D6D134-2E3F-46C3-9F88-A7C02CC9278D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{3AC380D7-69E4-46F6-BFFC-701C5BF76C02}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3AC380D7-69E4-46F6-BFFC-701C5BF76C02}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3AC380D7-69E4-46F6-BFFC-701C5BF76C02}.Release|Any CPU.Build.0 = Release|Any CPU
+		{75D6D134-2E3F-46C3-9F88-A7C02CC9278D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75D6D134-2E3F-46C3-9F88-A7C02CC9278D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75D6D134-2E3F-46C3-9F88-A7C02CC9278D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75D6D134-2E3F-46C3-9F88-A7C02CC9278D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
