@@ -61,8 +61,6 @@ namespace ArrayList
             mansNames.CopyTo(newNames, 2);
 
             Console.WriteLine($"Список мужских имён: {mansNames}");
-
-
         }
     }
 }
