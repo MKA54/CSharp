@@ -12,8 +12,6 @@ namespace ArrayList
         public MyArrayList()
         {
             Items = new T[DEFAULT_CAPACITY];
-
-            Console.WriteLine(Items.Length);
         }
 
         public MyArrayList(ICollection collection)
@@ -78,7 +76,6 @@ namespace ArrayList
             if (minCapacity > Items.Length)
             {
                 var newArray = Items;
-                Console.WriteLine(newArray); 
 
                 Array.Resize(ref newArray, minCapacity);
 
@@ -114,7 +111,7 @@ namespace ArrayList
 
         public void CopyTo(T[] array, int arrayIndex)
         {
-            if(array == null)
+            if (array == null)
             {
                 throw new ArgumentNullException("Добавляемая коллекция пустая");
             }
@@ -126,7 +123,21 @@ namespace ArrayList
                 EnsureCapacity(array.Length + Lenght);
             }
 
-            Items.CopyTo(array, arrayIndex);
+            T[] temp = new T[Items.Length];
+
+            Array.Copy(Items, 0, temp, 0, arrayIndex);
+            Array.Copy(Items, arrayIndex, temp, arrayIndex + array.Length, Lenght - arrayIndex);
+
+            var i = arrayIndex;
+
+            foreach (T element in array)
+            {
+                temp[i] = element;
+
+                i++;
+            }
+
+            Items = temp;
 
             Lenght += array.Length;
             ModCount++;
