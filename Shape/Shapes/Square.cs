@@ -6,29 +6,25 @@ namespace Shape.Shapes
     {
         public Square(double sideLength)
         {
-            SideLength = sideLength;
+            Rectangle = new Rectangle(sideLength, sideLength);
         }
 
-        public double SideLength
-        {
-            get;
-        }
+        public Rectangle Rectangle { get; set; }
 
-        public double GetArea() => SideLength * SideLength;
+        public double GetArea() => Rectangle.GetArea();
 
-        public double GetHeight() => SideLength;
+        public double GetHeight() => Rectangle.Height;
 
         public double GetPerimeter()
         {
-            const int sidesCount = 4;
-            return SideLength * sidesCount;
+            return Rectangle.GetPerimeter();
         }
 
-        public double GetWidth() => SideLength;
+        public double GetWidth() => Rectangle.Width;
 
         public override string ToString()
         {
-            return string.Format($"Квадрат с длиной стороны: {SideLength}");
+            return string.Format($"Квадрат с длиной стороны: {Rectangle.Width}");
         }
 
         public override bool Equals(object obj)
@@ -45,7 +41,7 @@ namespace Shape.Shapes
 
             var square = (Square)obj;
 
-            return Math.Abs(square.SideLength - SideLength) <= Constans.Epsilon;
+            return Math.Abs(square.Rectangle.Width - Rectangle.Width) <= Constans.Epsilon;
         }
 
         public override int GetHashCode()
@@ -53,7 +49,7 @@ namespace Shape.Shapes
             var prime = 37;
             var hash = 1;
 
-            return prime * hash + SideLength.GetHashCode();
+            return prime * hash + Rectangle.Width.GetHashCode();
         }
     }
 }
