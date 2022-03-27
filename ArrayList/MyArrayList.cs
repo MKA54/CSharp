@@ -7,11 +7,11 @@ namespace ArrayList
 {
     internal class MyArrayList<T> : IList<T>
     {
-        private static readonly int DEFAULT_CAPACITY = 10;
+        private static readonly int DefaultCapacity = 10;
 
         public MyArrayList()
         {
-            Items = new T[DEFAULT_CAPACITY];
+            Items = new T[DefaultCapacity];
         }
 
         public MyArrayList(ICollection collection)
@@ -25,9 +25,9 @@ namespace ArrayList
 
             foreach (T item in collection)
             {
-                Items[Lenght] = item;
+                Items[Length] = item;
 
-                Lenght++;
+                Length++;
             }
         }
 
@@ -38,7 +38,7 @@ namespace ArrayList
 
         public T[] Items { get; set; }
 
-        public int Lenght { get; set; }
+        public int Length { get; set; }
 
         public int ModCount { get; set; }
 
@@ -59,13 +59,13 @@ namespace ArrayList
             }
         }
 
-        public int Count => Lenght;
+        public int Count => Length;
 
         public bool IsReadOnly => false;
 
         private void IncreaseCapacity()
         {
-            T[] oldItems = Items;
+            var oldItems = Items;
             Items = new T[oldItems.Length * 2];
 
             Array.Copy(oldItems, 0, Items, 0, oldItems.Length);
@@ -73,37 +73,39 @@ namespace ArrayList
 
         private void EnsureCapacity(int minCapacity)
         {
-            if (minCapacity > Items.Length)
+            if (minCapacity <= Items.Length)
             {
-                var newArray = Items;
-
-                Array.Resize(ref newArray, minCapacity);
-
-                Items = newArray;
+                return;
             }
+
+            var newArray = Items;
+
+            Array.Resize(ref newArray, minCapacity);
+
+            Items = newArray;
         }
 
         public void Add(T item)
         {
-            if (Lenght + 1 > Items.Length)
+            if (Length + 1 > Items.Length)
             {
                 IncreaseCapacity();
             }
 
-            Items[Lenght] = item;
+            Items[Length] = item;
 
-            Lenght++;
+            Length++;
             ModCount++;
         }
 
         public void Clear()
         {
-            for (var i = 0; i < Lenght; i++)
+            for (var i = 0; i < Length; i++)
             {
                 Items[i] = default;
             }
 
-            Lenght = 0;
+            Length = 0;
             ModCount++;
         }
 
@@ -118,15 +120,15 @@ namespace ArrayList
 
             CheckIndex(arrayIndex);
 
-            if (array.Length + Lenght > Items.Length)
+            if (array.Length + Length > Items.Length)
             {
-                EnsureCapacity(array.Length + Lenght);
+                EnsureCapacity(array.Length + Length);
             }
 
             T[] temp = new T[Items.Length];
 
             Array.Copy(Items, 0, temp, 0, arrayIndex);
-            Array.Copy(Items, arrayIndex, temp, arrayIndex + array.Length, Lenght - arrayIndex);
+            Array.Copy(Items, arrayIndex, temp, arrayIndex + array.Length, Length - arrayIndex);
 
             var i = arrayIndex;
 
@@ -139,7 +141,7 @@ namespace ArrayList
 
             Items = temp;
 
-            Lenght += array.Length;
+            Length += array.Length;
             ModCount++;
         }
 
@@ -147,7 +149,7 @@ namespace ArrayList
         {
             var currentMod = ModCount;
 
-            for (var i = 0; i < Lenght; i++)
+            for (var i = 0; i < Length; i++)
             {
                 if (currentMod != ModCount)
                 {
@@ -160,7 +162,7 @@ namespace ArrayList
 
         public int IndexOf(T item)
         {
-            for (var i = 0; i < Lenght; i++)
+            for (var i = 0; i < Length; i++)
             {
                 if (Equals(Items[i], item))
                 {
@@ -182,13 +184,13 @@ namespace ArrayList
 
         public bool Remove(T item)
         {
-            for (var i = 0; i < Lenght; i++)
+            for (var i = 0; i < Length; i++)
             {
                 if (Equals(Items[i], item))
                 {
                     Items[i] = default;
 
-                    Lenght--;
+                    Length--;
                     ModCount++;
 
                     return true;
@@ -200,12 +202,12 @@ namespace ArrayList
 
         public void RemoveAt(int Index)
         {
-            if (Index < Lenght - 1)
+            if (Index < Length - 1)
             {
-                Array.Copy(Items, Index + 1, Items, Index, Lenght - Index - 1);
+                Array.Copy(Items, Index + 1, Items, Index, Length - Index - 1);
             }
 
-            Lenght--;
+            Length--;
             ModCount++;
         }
 
@@ -216,15 +218,15 @@ namespace ArrayList
 
         private void CheckIndex(int index)
         {
-            if (index < 0 || index >= Lenght)
+            if (index < 0 || index >= Length)
             {
-                throw new ArgumentOutOfRangeException($"Index must be from 0 to {Lenght - 1}. Index = {index}");
+                throw new ArgumentOutOfRangeException($"Index must be from 0 to {Length - 1}. Index = {index}");
             }
         }
 
         public override string ToString()
         {
-            if (Lenght == 0)
+            if (Length == 0)
             {
                 return "{}";
             }
@@ -237,7 +239,7 @@ namespace ArrayList
 
             for (var i = 0; i < Items.Length; i++)
             {
-                if (count == Lenght)
+                if (count == Length)
                 {
                     break;
                 }
