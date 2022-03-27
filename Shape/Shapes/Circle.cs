@@ -27,7 +27,7 @@ namespace Shape.Shapes
 
         public override string ToString()
         {
-            return string.Format($"Окружность с радиусом: {Radius}");
+            return $"Окружность с радиусом: {Radius}";
         }
 
         public override bool Equals(object obj)
@@ -49,8 +49,8 @@ namespace Shape.Shapes
 
         public override int GetHashCode()
         {
-            var prime = 37;
-            var hash = 1;
+            const int prime = 37;
+            const int hash = 1;
 
             return prime * hash + Radius.GetHashCode();
         }

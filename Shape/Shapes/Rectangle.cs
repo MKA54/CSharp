@@ -32,7 +32,7 @@ namespace Shape.Shapes
 
         public override string ToString()
         {
-            return string.Format($"Прямоугольник с размерами: ширина-{Width}, длина-{Height}");
+            return $"Прямоугольник с размерами: ширина-{Width}, длина-{Height}";
         }
 
         private static bool IsDoubleEquals(double arg1, double arg2) => Math.Abs(arg1 - arg2) <= Constans.Epsilon;
@@ -56,7 +56,7 @@ namespace Shape.Shapes
 
         public override int GetHashCode()
         {
-            var prime = 37;
+            const int prime = 37;
             var hash = 1;
 
             hash = prime * hash + Width.GetHashCode();

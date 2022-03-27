@@ -200,7 +200,7 @@ namespace Vector
 
         public override int GetHashCode()
         {
-            var prime = 37;
+            const int prime = 37;
             var hash = 1;
 
             foreach (var Coodinate in Coordinates)

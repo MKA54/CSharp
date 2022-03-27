@@ -64,8 +64,8 @@ namespace Shape.Shapes
 
         public override string ToString()
         {
-            return string.Format($"Треугольник с координатами: х1-{X1}, y1-{Y1}, х2-{X2}, y2-{Y2}, " +
-                $"х3-{X3}, y3-{Y3}");
+            return $"Треугольник с координатами: х1-{X1}, y1-{Y1}, х2-{X2}, y2-{Y2}, " +
+                $"х3-{X3}, y3-{Y3}";
         }
 
         private static bool IsDoubleEquals(double arg1, double arg2) => Math.Abs(arg1 - arg2) <= Constans.Epsilon;
@@ -91,7 +91,7 @@ namespace Shape.Shapes
 
         public override int GetHashCode()
         {
-            var prime = 37;
+            const int prime = 37;
             var hash = 1;
 
             hash = prime * hash + X1.GetHashCode();

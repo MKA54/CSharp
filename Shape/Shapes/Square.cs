@@ -9,7 +9,7 @@ namespace Shape.Shapes
             Rectangle = new Rectangle(sideLength, sideLength);
         }
 
-        public Rectangle Rectangle { get; set; }
+        private Rectangle Rectangle { get; set; }
 
         public double GetArea() => Rectangle.GetArea();
 
@@ -24,7 +24,7 @@ namespace Shape.Shapes
 
         public override string ToString()
         {
-            return string.Format($"Квадрат с длиной стороны: {Rectangle.Width}");
+            return $"Квадрат с длиной стороны: {Rectangle.Width}";
         }
 
         public override bool Equals(object obj)
@@ -46,8 +46,8 @@ namespace Shape.Shapes
 
         public override int GetHashCode()
         {
-            var prime = 37;
-            var hash = 1;
+            const int prime = 37;
+            const int hash = 1;
 
             return prime * hash + Rectangle.Width.GetHashCode();
         }
