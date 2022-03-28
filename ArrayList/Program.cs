@@ -46,21 +46,22 @@ namespace ArrayList
             Console.WriteLine($"Индекс первого вхождения имени {name1} в списке: " +
                 $"{womensNames.IndexOf(name1)}");
 
-            var name2 = "Павел";
-
             var isDeleted = mansNames.Remove("Евгений");
 
             Console.WriteLine($"Результат удаления: {isDeleted}");
+            Console.WriteLine($"Список мужских имён после удаления: {mansNames}");
 
-            mansNames.Insert(index, name2);
-            Console.WriteLine($"Список мужских имён: {mansNames}");
+            var name2 = "Павел";
+
+            mansNames.Insert(1, name2);
+            Console.WriteLine($"Список мужских имён после вставки: {mansNames}");
 
             mansNames.RemoveAt(5);
             Console.WriteLine($"Список мужских имён: {mansNames}");
 
-            var newNames = new[] { "Юрий", "Владимир", "Станислав" };
+            var newNames = new[] {"Юрий", "Владимир", "Станислав"};
 
-            mansNames.CopyTo(newNames, 3);
+            mansNames.CopyTo(newNames, mansNames.Count);
             Console.WriteLine($"Список мужских имён: {mansNames}");
 
             IEnumerator<string> enumerator = mansNames.GetEnumerator();
