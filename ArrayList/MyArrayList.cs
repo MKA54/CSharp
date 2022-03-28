@@ -92,6 +92,21 @@ namespace ArrayList
             Items = newItems;
         }
 
+        private void CheckForOverflow()
+        {
+            try
+            {
+                checked
+                {
+                    ModCount++;
+                }
+            }
+            catch
+            {
+                ModCount = 0;
+            }
+        }
+
         public void Add(T item)
         {
             if (Length + 1 > Items.Length)
@@ -102,7 +117,6 @@ namespace ArrayList
             Items[Length] = item;
 
             Length++;
-            ModCount++;
         }
 
         public void Clear()
@@ -113,7 +127,8 @@ namespace ArrayList
             }
 
             Length = 0;
-            ModCount++;
+
+            CheckForOverflow();
         }
 
         public bool Contains(T item) => IndexOf(item) >= 0;
@@ -168,7 +183,7 @@ namespace ArrayList
             }
 
             Length += array.Length;
-            ModCount++;
+            CheckForOverflow();
         }
 
         public IEnumerator<T> GetEnumerator()
@@ -226,7 +241,7 @@ namespace ArrayList
             Items = newItem;
 
             Length++;
-            ModCount++;
+            CheckForOverflow();
         }
 
         public bool Remove(T item)
@@ -254,7 +269,7 @@ namespace ArrayList
             }
 
             Length--;
-            ModCount++;
+            CheckForOverflow();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
