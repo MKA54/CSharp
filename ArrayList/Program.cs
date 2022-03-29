@@ -65,14 +65,6 @@ namespace ArrayList
             mansNames.CopyTo(newNames, mansNames.Count);
             Console.WriteLine($"Список мужских имён: {mansNames}");
 
-            var enumerator = mansNames.GetEnumerator();
-
-            while (enumerator.MoveNext())
-            {
-                var text = enumerator.Current;
-                Console.WriteLine(text);
-            }
-
             mansNames.Clear();
 
             Console.WriteLine($"Список после очистки: {mansNames}");
