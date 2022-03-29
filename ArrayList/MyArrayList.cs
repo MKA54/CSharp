@@ -18,7 +18,7 @@ namespace ArrayList
         {
             if (collection == null)
             {
-                throw new ArgumentNullException($"Пустая коллекция, Count: {Count}");
+                throw new ArgumentNullException($"Collection does not exist, collection: {null}");
             }
 
             Items = new T[collection.Count];
@@ -137,7 +137,7 @@ namespace ArrayList
         {
             if (array == null)
             {
-                throw new ArgumentNullException($"The collection being added is empty, array: {array.Length}");
+                throw new ArgumentNullException($"Collection does not exist, collection: {null}");
             }
 
             if (arrayIndex < 0 || arrayIndex > Count || arrayIndex > 0 && arrayIndex < Count)

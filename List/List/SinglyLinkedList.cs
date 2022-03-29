@@ -53,7 +53,7 @@ namespace List.List
                 return;
             }
 
-            throw new ArgumentNullException($"The list is empty, Size: {Size}");
+            throw new ArgumentNullException($"Collection does not exist, collection: {null}");
         }
 
         private ListItem<T> GetByIndex(int index)
