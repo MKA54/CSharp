@@ -182,6 +182,11 @@ namespace Vector
                 return false;
             }
 
+            if (Coordinates is null)
+            {
+                return false;
+            }
+
             var v = (Vector)obj;
 
             return Enumerable.SequenceEqual(Coordinates, v.Coordinates);
