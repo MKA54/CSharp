@@ -5,7 +5,7 @@ namespace ArrayList
 {
     internal class Program
     {
-        static void Main()
+        private static void Main()
         {
             var emptyList = new MyArrayList<string>();
             Console.WriteLine($"Пустой список: {emptyList}");
@@ -26,13 +26,13 @@ namespace ArrayList
 
             var namesList = new List<string> { "Ольга", "Жанна", "Мария", "Алла" };
 
-            var womensNames = new MyArrayList<string>(namesList);
-            Console.WriteLine($"Список женских имён: {womensNames}");
+            var womens = new MyArrayList<string>(namesList);
+            Console.WriteLine($"Список женских имён: {womens}");
 
-            var index = 5;
+            const int index = 5;
             Console.WriteLine($"Элемент по индексу {index}: {mansNames[index]}");
 
-            var name1 = "Григорий";
+            const string name1 = "Григорий";
             mansNames[index] = name1;
 
             Console.WriteLine($"Список мужских имён: {mansNames}");
@@ -40,19 +40,19 @@ namespace ArrayList
             Console.WriteLine($"Нахождения имени {name1} в списке: " +
                 $"{mansNames.Contains(name1)}");
             Console.WriteLine($"Нахождения имени {name1} в списке: " +
-                $"{womensNames.Contains(name1)}");
+                $"{womens.Contains(name1)}");
 
             Console.WriteLine($"Индекс первого вхождения имени {name1} в списке: " +
                 $"{mansNames.IndexOf(name1)}");
             Console.WriteLine($"Индекс первого вхождения имени {name1} в списке: " +
-                $"{womensNames.IndexOf(name1)}");
+                $"{womens.IndexOf(name1)}");
 
             var isDeleted = mansNames.Remove("Евгений");
 
             Console.WriteLine($"Результат удаления: {isDeleted}");
             Console.WriteLine($"Список мужских имён после удаления: {mansNames}");
 
-            var name2 = "Павел";
+            const string name2 = "Павел";
 
             mansNames.Insert(1, name2);
             Console.WriteLine($"Список мужских имён после вставки: {mansNames}");
@@ -65,11 +65,11 @@ namespace ArrayList
             mansNames.CopyTo(newNames, mansNames.Count);
             Console.WriteLine($"Список мужских имён: {mansNames}");
 
-            IEnumerator<string> enumerator = mansNames.GetEnumerator();
+            var enumerator = mansNames.GetEnumerator();
 
             while (enumerator.MoveNext())
             {
-                string text = enumerator.Current;
+                var text = enumerator.Current;
                 Console.WriteLine(text);
             }
 

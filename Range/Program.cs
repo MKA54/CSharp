@@ -4,7 +4,7 @@ namespace Range
 {
     internal class Program
     {
-        static void Main()
+        private static void Main()
         {
             var range = new Range(3, 9);
 
@@ -17,14 +17,14 @@ namespace Range
 
             var union = range.GetUnion(new Range(1, 4));
             Console.WriteLine("Объединение диапазонов:");
-            foreach (Range r in union)
+            foreach (var r in union)
             {
                 Console.WriteLine(r.ToString());
             }
 
             var difference = range.GetDifference(new Range(4, 6));
             Console.WriteLine("Разность 2 интервалов:");
-            foreach (Range r in difference)
+            foreach (var r in difference)
             {
                 Console.WriteLine(r.ToString());
             }

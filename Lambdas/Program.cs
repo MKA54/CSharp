@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Lambdas
 {
     internal class Program
     {
-        static void Main()
+        private static void Main()
         {
             var list = new List<Person>
             {
@@ -24,14 +22,14 @@ namespace Lambdas
                 new Person("Галина", 56),
             };
 
-            var uniqueList = list.Distinct(new InstanceNamesComparer());
+            var uniqueList = list.Distinct(new InstanceNamesComparer()).ToList();
 
             foreach (var item in uniqueList)
             {
                 Console.WriteLine(item);
             }
 
-            string allNamesString = string.Join(", ",
+            var allNamesString = string.Join(", ",
                 uniqueList.Select(person => person.Name)).Insert(0, "Имена: ");
 
             Console.WriteLine("Список уникальных имен");

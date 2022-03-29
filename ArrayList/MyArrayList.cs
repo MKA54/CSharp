@@ -7,7 +7,7 @@ namespace ArrayList
 {
     internal class MyArrayList<T> : IList<T>
     {
-        private static readonly int DefaultCapacity = 10;
+        private const int DefaultCapacity = 10;
 
         public MyArrayList()
         {
@@ -18,7 +18,7 @@ namespace ArrayList
         {
             if (collection == null)
             {
-                throw new ArgumentNullException("Пустая коллекция");
+                throw new ArgumentNullException($"Пустая коллекция, Count: {Count}");
             }
 
             Items = new T[collection.Count];
@@ -137,7 +137,7 @@ namespace ArrayList
         {
             if (array == null)
             {
-                throw new ArgumentNullException("The collection being added is empty");
+                throw new ArgumentNullException($"The collection being added is empty, array: {array.Length}");
             }
 
             if (arrayIndex < 0 || arrayIndex > Count || arrayIndex > 0 && arrayIndex < Count)
@@ -174,9 +174,9 @@ namespace ArrayList
             {
                 var init = Count;
 
-                for (var i = 0; i < array.Length; i++)
+                foreach (var item in array)
                 {
-                    Items[init] = array[i];
+                    Items[init] = item;
 
                     init++;
                 }
@@ -248,22 +248,24 @@ namespace ArrayList
         {
             for (var i = 0; i < Length; i++)
             {
-                if (Items[i].Equals(item))
+                if (!Items[i].Equals(item))
                 {
-                    RemoveAt(i);
-
-                    return true;
+                    continue;
                 }
+
+                RemoveAt(i);
+
+                return true;
             }
 
             return false;
         }
 
-        public void RemoveAt(int Index)
+        public void RemoveAt(int index)
         {
             var temp = Items;
 
-            for (var i = Index; i < Length; i++)
+            for (var i = index; i < Length; i++)
             {
                 Items[i] = temp[i + 1];
             }
@@ -292,20 +294,20 @@ namespace ArrayList
                 return "{}";
             }
 
-            StringBuilder stringBuilder = new StringBuilder();
+            var stringBuilder = new StringBuilder();
 
             stringBuilder.Append("{");
 
             var count = 0;
 
-            for (var i = 0; i < Items.Length; i++)
+            foreach (var item in Items)
             {
                 if (count == Length)
                 {
                     break;
                 }
 
-                stringBuilder.Append(Items[i]).Append(", ");
+                stringBuilder.Append(item).Append(", ");
                 count++;
             }
 

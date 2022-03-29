@@ -35,7 +35,7 @@ namespace Shape.Shapes
             return $"Прямоугольник с размерами: ширина-{Width}, длина-{Height}";
         }
 
-        private static bool IsDoubleEquals(double arg1, double arg2) => Math.Abs(arg1 - arg2) <= Constans.Epsilon;
+        private static bool IsDoubleEquals(double arg1, double arg2) => Math.Abs(arg1 - arg2) <= Constants.Epsilon;
 
         public override bool Equals(object obj)
         {
@@ -44,7 +44,7 @@ namespace Shape.Shapes
                 return true;
             }
 
-            if (ReferenceEquals(obj, null) || obj.GetType() != this.GetType())
+            if (obj is null || obj.GetType() != this.GetType())
             {
                 return false;
             }
@@ -57,9 +57,8 @@ namespace Shape.Shapes
         public override int GetHashCode()
         {
             const int prime = 37;
-            var hash = 1;
 
-            hash = prime * hash + Width.GetHashCode();
+            var hash = prime * Width.GetHashCode();
 
             return prime * hash + Height.GetHashCode();
         }

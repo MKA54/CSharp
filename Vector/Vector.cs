@@ -19,14 +19,15 @@ namespace Vector
         public Vector(Vector vector) => Array.Copy(vector.Coordinates,
             Coordinates = new double[vector.Coordinates.Length], vector.Coordinates.Length);
 
-        public Vector(double[] сoordinates)
+        public Vector(double[] coordinates)
         {
-            if (сoordinates.Length == 0)
+            if (
+                coordinates.Length == 0)
             {
-                throw new ArgumentException($"invalid array length: {сoordinates.Length}");
+                throw new ArgumentException($"invalid array length: {coordinates.Length}");
             }
 
-            Array.Copy(сoordinates, Coordinates = new double[сoordinates.Length], сoordinates.Length);
+            Array.Copy(coordinates, Coordinates = new double[coordinates.Length], coordinates.Length);
         }
 
         public Vector(int size, double[] coordinates)
@@ -50,13 +51,7 @@ namespace Vector
             set;
         }
 
-        public int Size
-        {
-            get
-            {
-                return Coordinates.Length;
-            }
-        }
+        public int Size => Coordinates.Length;
 
         private void IncreaseArraySize(int newSize)
         {
@@ -102,13 +97,7 @@ namespace Vector
 
         public void Reverse() => MultiplyByScalar(-1);
 
-        public double Length
-        {
-            get
-            {
-                return Coordinates.Sum();
-            }
-        }
+        public double Length => Coordinates.Sum();
 
         private void CheckIndex(int index)
         {
@@ -166,13 +155,13 @@ namespace Vector
         }
         public override string ToString()
         {
-            StringBuilder stringBuilder = new StringBuilder();
+            var stringBuilder = new StringBuilder();
 
             stringBuilder.Append("{");
 
-            foreach (var C in Coordinates)
+            foreach (var c in Coordinates)
             {
-                stringBuilder.Append(C).Append(", ");
+                stringBuilder.Append(c).Append(", ");
             }
 
             stringBuilder.Remove(stringBuilder.Length - 2, 2);
@@ -188,7 +177,7 @@ namespace Vector
                 return true;
             }
 
-            if (ReferenceEquals(obj, null) || obj.GetType() != this.GetType())
+            if (obj is null || obj.GetType() != this.GetType())
             {
                 return false;
             }
@@ -201,14 +190,8 @@ namespace Vector
         public override int GetHashCode()
         {
             const int prime = 37;
-            var hash = 1;
 
-            foreach (var Coodinate in Coordinates)
-            {
-                hash = prime * hash + Coodinate.GetHashCode();
-            }
-
-            return hash;
+            return Coordinates.Aggregate(0, (sum, v) => sum + v.GetHashCode() + prime);
         }
     }
 }

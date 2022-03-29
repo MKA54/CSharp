@@ -37,14 +37,14 @@ namespace Shape.Shapes
                 return true;
             }
 
-            if (ReferenceEquals(obj, null) || obj.GetType() != this.GetType())
+            if (obj is null || obj.GetType() != this.GetType())
             {
                 return false;
             }
 
             var circle = (Circle)obj;
 
-            return Math.Abs(circle.Radius - Radius) <= Constans.Epsilon;
+            return Math.Abs(circle.Radius - Radius) <= Constants.Epsilon;
         }
 
         public override int GetHashCode()

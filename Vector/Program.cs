@@ -4,7 +4,7 @@ namespace Vector
 {
     internal class Program
     {
-        static void Main()
+        private static void Main()
         {
             var vector1 = new Vector(4);
             Console.WriteLine($"Конструктор Vector(n): {vector1}");
@@ -41,7 +41,7 @@ namespace Vector
 
             Console.WriteLine($"Длина вектора: {vector2.Length}");
 
-            var index = 3;
+            const int index = 3;
             Console.WriteLine($"Координата вектора {vector2.GetCoordinateByIndex(index)}, по индексу {index}");
 
             vector2.SetCoordinateByIndex(index, 33);

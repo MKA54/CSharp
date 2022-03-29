@@ -34,14 +34,14 @@ namespace Shape.Shapes
                 return true;
             }
 
-            if (ReferenceEquals(obj, null) || obj.GetType() != this.GetType())
+            if (obj is null || obj.GetType() != this.GetType())
             {
                 return false;
             }
 
             var square = (Square)obj;
 
-            return Math.Abs(square.Rectangle.Width - Rectangle.Width) <= Constans.Epsilon;
+            return Math.Abs(square.Rectangle.Width - Rectangle.Width) <= Constants.Epsilon;
         }
 
         public override int GetHashCode()
@@ -49,7 +49,7 @@ namespace Shape.Shapes
             const int prime = 37;
             const int hash = 1;
 
-            return prime * hash + Rectangle.Width.GetHashCode();
+            return prime * hash + GetWidth().GetHashCode();
         }
     }
 }

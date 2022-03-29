@@ -48,10 +48,12 @@ namespace List.List
 
         private void CheckListSize()
         {
-            if (Size == 0)
+            if (Size > 0)
             {
-                throw new ArgumentNullException("The list is empty");
+                return;
             }
+
+            throw new ArgumentNullException($"The list is empty, Size: {Size}");
         }
 
         private ListItem<T> GetByIndex(int index)
@@ -59,7 +61,7 @@ namespace List.List
             CheckIndex(index);
 
             ListItem<T> item = null;
-            int i = 0;
+            var i = 0;
 
             for (var current = Head; current != null; current = current.Next)
             {
@@ -82,7 +84,7 @@ namespace List.List
         {
             var item = GetByIndex(index);
 
-            T oldData = item.Data;
+            var oldData = item.Data;
 
             item.Data = data;
 
@@ -101,7 +103,7 @@ namespace List.List
             var previous = GetByIndex(index - 1);
             var current = previous.Next;
 
-            T data = current.Data;
+            var data = current.Data;
 
             previous.Next = current.Next;
 
@@ -157,14 +159,17 @@ namespace List.List
             for (ListItem<T> current = Head.Next, previous = Head; current != null;
                 previous = current, current = current.Next)
             {
-                if (Equals(data, current.Data))
+                if (!Equals(data, current.Data))
                 {
-                    previous.Next = current.Next;
-
-                    --Size;
-
-                    return true;
+                    continue;
                 }
+
+                previous.Next = current.Next;
+
+                --Size;
+
+                return true;
+
             }
 
             return false;
@@ -174,7 +179,7 @@ namespace List.List
         {
             CheckListSize();
 
-            T data = Head.Data;
+            var data = Head.Data;
 
             Head = Head.Next;
 
@@ -186,11 +191,11 @@ namespace List.List
         public void Reverse()
         {
             ListItem<T> previous = null;
-            ListItem<T> current = Head;
+            var current = Head;
 
             while (current != null)
             {
-                ListItem<T> next = current.Next;
+                var next = current.Next;
 
                 current.Next = previous;
                 previous = current;
@@ -207,12 +212,12 @@ namespace List.List
                 return new SinglyLinkedList<T>();
             }
 
-            SinglyLinkedList<T> copy = new SinglyLinkedList<T>(Head.Data);
+            var copy = new SinglyLinkedList<T>(Head.Data);
 
             for (ListItem<T> current = Head.Next, currentCopy = copy.Head; current != null;
                 current = current.Next, currentCopy = currentCopy.Next)
             {
-                ListItem<T> itemCopy = new ListItem<T>(current.Data);
+                var itemCopy = new ListItem<T>(current.Data);
 
                 currentCopy.Next = itemCopy;
             }
@@ -223,14 +228,14 @@ namespace List.List
         }
 
 
-        public override String ToString()
+        public override string ToString()
         {
             if (Size == 0)
             {
                 return "{}";
             }
 
-            StringBuilder stringBuilder = new StringBuilder();
+            var stringBuilder = new StringBuilder();
 
             stringBuilder.Append("{");
 

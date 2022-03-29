@@ -5,7 +5,7 @@ namespace Shape
 {
     internal class Program
     {
-        static void Main()
+        private static void Main()
         {
             var shapes = new IShape[]{ new Circle(4),
                 new Triangle(2,3,-4, 5, -4, 8),
@@ -33,16 +33,16 @@ namespace Shape
             Console.WriteLine("Проверка на равенство Equals треугольников: {0}",
                 triangle1.Equals(triangle3));
 
-            var cirle1 = new Circle(8);
-            var cirle2 = new Circle(7);
-            var cirle3 = new Circle(8);
+            var circle1 = new Circle(8);
+            var circle2 = new Circle(7);
+            var circle3 = new Circle(8);
 
             Console.WriteLine("Проверка на равенство HashCode окружностей: {0}",
-                cirle1.GetHashCode() == cirle2.GetHashCode());
-            Console.WriteLine("Проверка на равенство Equals окружностей: {0}", cirle1.Equals(cirle2));
+                circle1.GetHashCode() == circle2.GetHashCode());
+            Console.WriteLine("Проверка на равенство Equals окружностей: {0}", circle1.Equals(circle2));
             Console.WriteLine("Проверка на равенство HashCode окружностей: {0}",
-                cirle1.GetHashCode() == cirle3.GetHashCode());
-            Console.WriteLine("Проверка на равенство Equals окружностей: {0}", cirle1.Equals(cirle3));
+                circle1.GetHashCode() == circle3.GetHashCode());
+            Console.WriteLine("Проверка на равенство Equals окружностей: {0}", circle1.Equals(circle3));
 
             var rectangle1 = new Rectangle(2, 8);
             var rectangle2 = new Rectangle(4, 8);
@@ -84,10 +84,10 @@ namespace Shape
         public static void PrintShapeWithSecondLargestPerimeter(IShape[] shapes)
         {
             Array.Sort(shapes, new PerimeterComparator());
-            var SecondElementAroundPerimeter = shapes.Length - 2;
+            var secondElementAroundPerimeter = shapes.Length - 2;
 
             Console.WriteLine("Фигура со вторым по величине периметром - {0}, периметр {1:f2}",
-                shapes[SecondElementAroundPerimeter], shapes[SecondElementAroundPerimeter].GetPerimeter());
+                shapes[secondElementAroundPerimeter], shapes[secondElementAroundPerimeter].GetPerimeter());
         }
     }
 }

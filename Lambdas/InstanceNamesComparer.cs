@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Lambdas
 {
@@ -10,12 +6,12 @@ namespace Lambdas
     {
         public override bool Equals(Person p1, Person p2)
         {
-            if (Object.ReferenceEquals(p1, p2))
+            if (ReferenceEquals(p1, p2))
             {
                 return true;
             }
 
-            if (Object.ReferenceEquals(p1, null) || Object.ReferenceEquals(p2, null))
+            if (p1 is null|| p2 is null)
             {
                 return false;
             }
@@ -25,18 +21,13 @@ namespace Lambdas
 
         public override int GetHashCode(Person p)
         {
-            if (Object.ReferenceEquals(p, null))
+            if (p.Name == null)
             {
                 return 0;
             }
 
-            if(p.Name == null)
-            {
-                return 0;
-            }
-
-            var prime = 37;
-            var hash = 1; 
+            const int prime = 37;
+            const int hash = 1; 
 
             return prime * hash + p.Name.GetHashCode();
         }

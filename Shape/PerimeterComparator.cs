@@ -13,15 +13,17 @@ namespace Shape
                 throw new ArgumentException("Некорректное значение параметра");
             }
 
-            if ((s1.GetPerimeter() - s2.GetPerimeter()) > Constans.Epsilon)
+            if (s1.GetPerimeter() - s2.GetPerimeter() > Constants.Epsilon)
             {
                 return 1;
             }
-            else if ((s2.GetPerimeter()) - s1.GetPerimeter() > Constans.Epsilon)
+
+            if (s2.GetPerimeter() - s1.GetPerimeter() > Constants.Epsilon)
             {
                 return -1;
             }
-            else return 0;
+            
+            return 0;
         }
     }
 }
