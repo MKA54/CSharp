@@ -40,7 +40,7 @@ namespace ArrayList
 
         public int Length { get; set; }
 
-        public long ModCount { get; set; }
+        private long ModCount { get; set; }
 
         public T this[int index]
         {
@@ -92,21 +92,6 @@ namespace ArrayList
             Items = newItems;
         }
 
-        private void CheckForOverflow()
-        {
-            try
-            {
-                checked
-                {
-                    ModCount++;
-                }
-            }
-            catch
-            {
-                ModCount = 0;
-            }
-        }
-
         public void Add(T item)
         {
             if (Length + 1 > Items.Length)
@@ -116,7 +101,13 @@ namespace ArrayList
 
             Items[Length] = item;
 
+            if (long.MaxValue == ModCount)
+            {
+                ModCount = 0;
+            }
+
             Length++;
+            ModCount++;
         }
 
         public void Clear()
@@ -128,7 +119,12 @@ namespace ArrayList
 
             Length = 0;
 
-            CheckForOverflow();
+            if (long.MaxValue == ModCount)
+            {
+                ModCount = 0;
+            }
+
+            ModCount++;
         }
 
         public bool Contains(T item) => IndexOf(item) >= 0;
@@ -140,50 +136,10 @@ namespace ArrayList
                 throw new ArgumentNullException($"Collection does not exist, collection: {null}");
             }
 
-            if (arrayIndex < 0 || arrayIndex > Count || arrayIndex > 0 && arrayIndex < Count)
+            for (var i = arrayIndex; i < array.Length; i++)
             {
-                throw new ArgumentOutOfRangeException($"Invalid index value, index {arrayIndex}");
+                array[i] = Items[i];
             }
-
-            if (array.Length + Length > Items.Length)
-            {
-                EnsureCapacity(array.Length + Length);
-            }
-
-            if (arrayIndex == 0)
-            {
-                var temp = new T[array.Length + Length];
-
-                for (var i = 0; i < array.Length; i++)
-                {
-                    temp[i] = array[i];
-                }
-
-                var k = 0;
-
-                for (var j = array.Length; j < Count + array.Length; j++)
-                {
-                    temp[j] = Items[k];
-
-                    k++;
-                }
-
-                Items = temp;
-            }
-            else
-            {
-                var init = Count;
-
-                foreach (var item in array)
-                {
-                    Items[init] = item;
-
-                    init++;
-                }
-            }
-
-            Length += array.Length;
-            CheckForOverflow();
         }
 
         public IEnumerator<T> GetEnumerator()
@@ -240,8 +196,13 @@ namespace ArrayList
 
             Items = newItem;
 
+            if (long.MaxValue == ModCount)
+            {
+                ModCount = 0;
+            }
+
             Length++;
-            CheckForOverflow();
+            ModCount++;
         }
 
         public bool Remove(T item)
@@ -270,8 +231,13 @@ namespace ArrayList
                 Items[i] = temp[i + 1];
             }
 
+            if (long.MaxValue == ModCount)
+            {
+                ModCount = 0;
+            }
+
             Length--;
-            CheckForOverflow();
+            ModCount++;
         }
 
         IEnumerator IEnumerable.GetEnumerator()

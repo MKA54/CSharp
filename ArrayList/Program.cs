@@ -60,10 +60,15 @@ namespace ArrayList
             mansNames.RemoveAt(5);
             Console.WriteLine($"Список мужских имён: {mansNames}");
 
-            var newNames = new[] {"Юрий", "Владимир", "Станислав"};
+            var newNames = new[] {"Ольга", "Светлана", "Эльвира","", ""};
 
-            mansNames.CopyTo(newNames, mansNames.Count);
-            Console.WriteLine($"Список мужских имён: {mansNames}");
+            mansNames.CopyTo(newNames, 2);
+
+            Console.WriteLine("Список мужских имён после копирования женских:");
+            foreach (var name in newNames)
+            {
+                Console.WriteLine(name);
+            }
 
             mansNames.Clear();
 
