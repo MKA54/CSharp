@@ -136,6 +136,12 @@ namespace ArrayList
                 throw new ArgumentNullException($"Collection does not exist, collection: {null}");
             }
 
+            if (arrayIndex < 0 || arrayIndex > array.Length - 1)
+            {
+                throw new ArgumentOutOfRangeException($"Index must be from 0 to { array.Length - 1}." +
+                                                      $"Index = {arrayIndex}");
+            }
+
             for (var i = arrayIndex; i < array.Length; i++)
             {
                 array[i] = Items[i];
