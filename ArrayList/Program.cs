@@ -64,7 +64,7 @@ namespace ArrayList
 
             mansNames.CopyTo(newNames, 2);
 
-            Console.WriteLine("Список мужских имён после копирования женских:");
+            Console.WriteLine("Массив женских имён после копирования мужских:");
             foreach (var name in newNames)
             {
                 Console.WriteLine(name);
