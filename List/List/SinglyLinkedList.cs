@@ -13,7 +13,7 @@ namespace List.List
             ++Size;
         }
 
-        public ListItem<T> Head
+        private ListItem<T> Head
         {
             get;
             set;

@@ -10,12 +10,12 @@ namespace Range
             To = Math.Max(from, to);
         }
 
-        public double From
+        private double From
         {
             get;
         }
 
-        public double To
+        private double To
         {
             get;
         }

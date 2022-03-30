@@ -9,6 +9,7 @@ namespace Shape.Shapes
             Width = width;
             Height = height;
         }
+
         public double Width
         {
             get;

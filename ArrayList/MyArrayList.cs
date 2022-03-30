@@ -11,7 +11,7 @@ namespace ArrayList
 
         public MyArrayList()
         {
-            Items = new T[DefaultCapacity];
+            _items = new T[DefaultCapacity];
         }
 
         public MyArrayList(ICollection collection)
@@ -21,11 +21,11 @@ namespace ArrayList
                 throw new ArgumentNullException($"Collection does not exist, collection: {null}");
             }
 
-            Items = new T[collection.Count];
+            _items = new T[collection.Count];
 
             foreach (T item in collection)
             {
-                Items[Length] = item;
+                _items[Length] = item;
 
                 Length++;
             }
@@ -33,12 +33,12 @@ namespace ArrayList
 
         public MyArrayList(int initialCapacity)
         {
-            Items = new T[initialCapacity];
+            _items = new T[initialCapacity];
         }
 
-        public T[] Items { get; set; }
+        private T[] _items;
 
-        public int Length { get; set; }
+        private int Length { get; set; }
 
         private long ModCount { get; set; }
 
@@ -48,14 +48,14 @@ namespace ArrayList
             {
                 CheckIndex(index);
 
-                return Items[index];
+                return _items[index];
             }
 
             set
             {
                 CheckIndex(index);
 
-                Items[index] = value;
+                _items[index] = value;
             }
         }
 
@@ -65,41 +65,41 @@ namespace ArrayList
 
         private void IncreaseCapacity()
         {
-            var newItems = new T[Items.Length * 2];
+            var newItems = new T[_items.Length * 2];
 
-            for (var i = 0; i < Items.Length; i++)
+            for (var i = 0; i < _items.Length; i++)
             {
-                newItems[i] = Items[i];
+                newItems[i] = _items[i];
             }
 
-            Items = newItems;
+            _items = newItems;
         }
 
         private void EnsureCapacity(int minCapacity)
         {
-            if (minCapacity <= Items.Length)
+            if (minCapacity <= _items.Length)
             {
                 return;
             }
 
             var newItems = new T[minCapacity];
 
-            for (var i = 0; i < Items.Length; i++)
+            for (var i = 0; i < _items.Length; i++)
             {
-                newItems[i] = Items[i];
+                newItems[i] = _items[i];
             }
 
-            Items = newItems;
+            _items = newItems;
         }
 
         public void Add(T item)
         {
-            if (Length + 1 > Items.Length)
+            if (Count + 1 > _items.Length)
             {
                 IncreaseCapacity();
             }
 
-            Items[Length] = item;
+            _items[Count] = item;
 
             if (long.MaxValue == ModCount)
             {
@@ -114,7 +114,7 @@ namespace ArrayList
         {
             for (var i = 0; i < Length; i++)
             {
-                Items[i] = default;
+                _items[i] = default;
             }
 
             Length = 0;
@@ -142,9 +142,14 @@ namespace ArrayList
                                                       $"Index = {arrayIndex}");
             }
 
-            for (var i = arrayIndex; i < array.Length; i++)
+            for (var i = 0; i < Count; i++)
             {
-                array[i] = Items[i];
+                if (i + arrayIndex == array.Length)
+                {
+                    break;
+                }
+
+                array[i + arrayIndex] = _items[i];
             }
         }
 
@@ -152,22 +157,22 @@ namespace ArrayList
         {
             var currentMod = ModCount;
 
-            for (var i = 0; i < Length; i++)
+            for (var i = 0; i < Count; i++)
             {
                 if (currentMod != ModCount)
                 {
                     throw new InvalidOperationException("The collection has changed");
                 }
 
-                yield return Items[i];
+                yield return _items[i];
             }
         }
 
         public int IndexOf(T item)
         {
-            for (var i = 0; i < Length; i++)
+            for (var i = 0; i < Count; i++)
             {
-                if (Equals(Items[i], item))
+                if (Equals(_items[i], item))
                 {
                     return i;
                 }
@@ -180,13 +185,13 @@ namespace ArrayList
         {
             CheckIndex(index);
 
-            EnsureCapacity(Items.Length + 1);
+            EnsureCapacity(_items.Length + 1);
 
-            var newItem = new T[Items.Length];
+            var newItem = new T[_items.Length];
 
             var j = 0;
 
-            for (var i = 0; i <= Length + 1; i++)
+            for (var i = 0; i <= Count + 1; i++)
             {
                 if (i == index)
                 {
@@ -195,12 +200,12 @@ namespace ArrayList
                     continue;
                 }
 
-                newItem[i] = Items[j];
+                newItem[i] = _items[j];
 
                 j++;
             }
 
-            Items = newItem;
+            _items = newItem;
 
             if (long.MaxValue == ModCount)
             {
@@ -213,9 +218,9 @@ namespace ArrayList
 
         public bool Remove(T item)
         {
-            for (var i = 0; i < Length; i++)
+            for (var i = 0; i < Count; i++)
             {
-                if (!Items[i].Equals(item))
+                if (!_items[i].Equals(item))
                 {
                     continue;
                 }
@@ -230,11 +235,18 @@ namespace ArrayList
 
         public void RemoveAt(int index)
         {
-            var temp = Items;
+            var temp = _items;
 
-            for (var i = index; i < Length; i++)
+            for (var i = index; i < Count; i++)
             {
-                Items[i] = temp[i + 1];
+                _items[i] = temp[i + 1];
+            }
+
+            Length--;
+
+            if (Count < Math.Ceiling(_items.Length * 0.1))
+            {
+                TrimToSize();
             }
 
             if (long.MaxValue == ModCount)
@@ -242,7 +254,25 @@ namespace ArrayList
                 ModCount = 0;
             }
 
-            Length--;
+            ModCount++;
+        }
+
+        public void TrimToSize()
+        {
+            var newItems = new T[Count];
+
+            for (var i = 0; i < Count; i++)
+            {
+                newItems[i] = _items[i];
+            }
+
+            _items = newItems;
+
+            if (long.MaxValue == ModCount)
+            {
+                ModCount = 0;
+            }
+
             ModCount++;
         }
 
@@ -253,15 +283,15 @@ namespace ArrayList
 
         private void CheckIndex(int index)
         {
-            if (index < 0 || index >= Length)
+            if (index < 0 || index >= Count)
             {
-                throw new ArgumentOutOfRangeException($"Index must be from 0 to {Length - 1}. Index = {index}");
+                throw new ArgumentOutOfRangeException($"Index must be from 0 to {Count - 1}. Index = {index}");
             }
         }
 
         public override string ToString()
         {
-            if (Length == 0)
+            if (Count == 0)
             {
                 return "{}";
             }
@@ -272,9 +302,9 @@ namespace ArrayList
 
             var count = 0;
 
-            foreach (var item in Items)
+            foreach (var item in _items)
             {
-                if (count == Length)
+                if (count == Count)
                 {
                     break;
                 }

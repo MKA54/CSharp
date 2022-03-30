@@ -14,32 +14,32 @@ namespace Shape.Shapes
             Y3 = y3;
         }
 
-        public double X1
+        private double X1
         {
             get;
         }
 
-        public double Y1
+        private double Y1
         {
             get;
         }
 
-        public double X2
+        private double X2
         {
             get;
         }
 
-        public double Y2
+        private double Y2
         {
             get;
         }
 
-        public double X3
+        private double X3
         {
             get;
         }
 
-        public double Y3
+        private double Y3
         {
             get;
         }

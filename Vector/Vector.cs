@@ -13,11 +13,11 @@ namespace Vector
                 throw new ArgumentException($"size: {size} <= 0");
             }
 
-            Coordinates = new double[size];
+            _coordinates = new double[size];
         }
 
-        public Vector(Vector vector) => Array.Copy(vector.Coordinates,
-            Coordinates = new double[vector.Coordinates.Length], vector.Coordinates.Length);
+        public Vector(Vector vector) => Array.Copy(vector._coordinates,
+            _coordinates = new double[vector._coordinates.Length], vector._coordinates.Length);
 
         public Vector(double[] coordinates)
         {
@@ -27,7 +27,7 @@ namespace Vector
                 throw new ArgumentException($"invalid array length: {coordinates.Length}");
             }
 
-            Array.Copy(coordinates, Coordinates = new double[coordinates.Length], coordinates.Length);
+            Array.Copy(coordinates, _coordinates = new double[coordinates.Length], coordinates.Length);
         }
 
         public Vector(int size, double[] coordinates)
@@ -42,68 +42,64 @@ namespace Vector
                 throw new ArgumentException($"size: {size} < Coordinates.Length");
             }
 
-            Array.Copy(coordinates, Coordinates = new double[size], coordinates.Length);
+            Array.Copy(coordinates, _coordinates = new double[size], coordinates.Length);
         }
 
-        public double[] Coordinates
-        {
-            get;
-            set;
-        }
+        private double[] _coordinates;
 
-        public int Size => Coordinates.Length;
+        public int Size => _coordinates.Length;
 
         private void IncreaseArraySize(int newSize)
         {
-            var newArray = Coordinates;
+            var newArray = _coordinates;
             Array.Resize(ref newArray, newSize);
 
-            Coordinates = newArray;
+            _coordinates = newArray;
         }
 
         public void Add(Vector vector)
         {
-            if (vector.Coordinates.Length > Coordinates.Length)
+            if (vector.Size > Size)
             {
-                IncreaseArraySize(vector.Coordinates.Length);
+                IncreaseArraySize(vector.Size);
             }
 
-            for (var i = 0; i < vector.Coordinates.Length; i++)
+            for (var i = 0; i < vector.Size; i++)
             {
-                Coordinates[i] += vector.Coordinates[i];
+                _coordinates[i] += vector._coordinates[i];
             }
         }
 
         public void Subtract(Vector vector)
         {
-            if (vector.Coordinates.Length > Coordinates.Length)
+            if (vector.Size > Size)
             {
-                IncreaseArraySize(vector.Coordinates.Length);
+                IncreaseArraySize(vector.Size);
             }
 
             for (var i = 0; i < vector.Size; i++)
             {
-                Coordinates[i] -= vector.Coordinates[i];
+                _coordinates[i] -= vector._coordinates[i];
             }
         }
 
         public void MultiplyByScalar(double scalar)
         {
-            for (var i = 0; i < Coordinates.Length; i++)
+            for (var i = 0; i < Size; i++)
             {
-                Coordinates[i] *= scalar;
+                _coordinates[i] *= scalar;
             }
         }
 
         public void Reverse() => MultiplyByScalar(-1);
 
-        public double Length => Coordinates.Sum();
+        public double Length => _coordinates.Sum();
 
         private void CheckIndex(int index)
         {
-            if (index < 0 || index >= Coordinates.Length)
+            if (index < 0 || index >= Size)
             {
-                throw new IndexOutOfRangeException($"Index must be from 0 to {Coordinates.Length - 1}" +
+                throw new IndexOutOfRangeException($"Index must be from 0 to {Size - 1}" +
                     $". Index = {index}");
             }
         }
@@ -112,14 +108,14 @@ namespace Vector
         {
             CheckIndex(index);
 
-            return Coordinates[index];
+            return _coordinates[index];
         }
 
         public void SetCoordinateByIndex(int index, double coordinate)
         {
             CheckIndex(index);
 
-            Coordinates[index] = coordinate;
+            _coordinates[index] = coordinate;
         }
 
         public static Vector GetSum(Vector vector1, Vector vector2)
@@ -148,7 +144,7 @@ namespace Vector
 
             for (var i = 0; i < length; i++)
             {
-                result += vector1.Coordinates[i] * vector2.Coordinates[i];
+                result += vector1._coordinates[i] * vector2._coordinates[i];
             }
 
             return result;
@@ -159,7 +155,7 @@ namespace Vector
 
             stringBuilder.Append("{");
 
-            foreach (var c in Coordinates)
+            foreach (var c in _coordinates)
             {
                 stringBuilder.Append(c).Append(", ");
             }
@@ -182,21 +178,21 @@ namespace Vector
                 return false;
             }
 
-            if (Coordinates is null)
+            if (_coordinates is null)
             {
                 return false;
             }
 
             var v = (Vector)obj;
 
-            return Enumerable.SequenceEqual(Coordinates, v.Coordinates);
+            return Enumerable.SequenceEqual(_coordinates, v._coordinates);
         }
 
         public override int GetHashCode()
         {
             const int prime = 37;
 
-            return Coordinates.Aggregate(0, (sum, v) => sum + v.GetHashCode() + prime);
+            return _coordinates.Aggregate(0, (sum, v) => sum + v.GetHashCode() + prime);
         }
     }
 }

@@ -9,7 +9,7 @@ namespace Shape.Shapes
             Radius = radius;
         }
 
-        public double Radius
+        private double Radius
         {
             get;
         }

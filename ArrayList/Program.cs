@@ -9,7 +9,7 @@ namespace ArrayList
         {
             var emptyList = new MyArrayList<string>();
             Console.WriteLine($"Пустой список: {emptyList}");
-            Console.WriteLine($"Количество элементов в списке: {emptyList.Length}");
+            Console.WriteLine($"Количество элементов в списке: {emptyList.Count}");
 
             var mansNames = new MyArrayList<string>();
 
