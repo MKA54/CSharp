@@ -51,8 +51,12 @@ namespace Vector
 
         private void IncreaseArraySize(int newSize)
         {
-            var newArray = _coordinates;
-            Array.Resize(ref newArray, newSize);
+            var newArray = new double[newSize];
+
+            for (var i = 0; i < _coordinates.Length; i++)
+            {
+                newArray[i] = _coordinates[i];
+            }
 
             _coordinates = newArray;
         }
@@ -93,7 +97,13 @@ namespace Vector
 
         public void Reverse() => MultiplyByScalar(-1);
 
-        public double Length => _coordinates.Sum();
+        public double Length()
+        {
+            return Math.Sqrt(
+                _coordinates
+                .Select(x => Math.Pow(x, 2))
+                .Sum());
+        }
 
         private void CheckIndex(int index)
         {
@@ -104,21 +114,24 @@ namespace Vector
             }
         }
 
-        public double GetCoordinateByIndex(int index)
+        public double this[int index]
         {
-            CheckIndex(index);
+            get
+            {
+                CheckIndex(index);
 
-            return _coordinates[index];
+                return _coordinates[index];
+            }
+
+            set
+            {
+                CheckIndex(index);
+
+                _coordinates[index] = value;
+            }
         }
 
-        public void SetCoordinateByIndex(int index, double coordinate)
-        {
-            CheckIndex(index);
-
-            _coordinates[index] = coordinate;
-        }
-
-        public static Vector GetSum(Vector vector1, Vector vector2)
+        public static Vector Add(Vector vector1, Vector vector2)
         {
             var result = new Vector(vector1);
 
@@ -127,7 +140,7 @@ namespace Vector
             return result;
         }
 
-        public static Vector GetDifference(Vector vector1, Vector vector2)
+        public static Vector Substrate(Vector vector1, Vector vector2)
         {
             var result = new Vector(vector1);
 

@@ -9,7 +9,7 @@ namespace Vector
             var vector1 = new Vector(4);
             Console.WriteLine($"Конструктор Vector(n): {vector1}");
 
-            var coordinates = new double[] { 3, 5, 3, 5, 2, 1, 6 };
+            var coordinates = new double[] {3, 5, 3, 5, 2, 1, 6};
 
             Console.WriteLine($"Размер вектора: {vector1.Size}");
 
@@ -27,7 +27,7 @@ namespace Vector
 
             var vector5 = new Vector(new double[]
             {
-                4, 5, 3, 9 , 0, -4, 5, 8, 9, 12, 33, 12
+                4, 5, 3, 9, 0, -4, 5, 8, 9, 12, 33, 12
             });
 
             vector2.Subtract(vector5);
@@ -39,13 +39,13 @@ namespace Vector
             vector2.Reverse();
             Console.WriteLine($"Вектор после разворота: {vector2}");
 
-            Console.WriteLine($"Длина вектора: {vector2.Length}");
+            Console.WriteLine("Длина вектора: {0:f2}", vector2.Length());
 
             const int index = 3;
-            Console.WriteLine($"Координата вектора {vector2.GetCoordinateByIndex(index)}, по индексу {index}");
+            Console.WriteLine($"Координата вектора {vector2[index]}, по индексу {index}");
 
-            vector2.SetCoordinateByIndex(index, 33);
-            Console.WriteLine($"Координата вектора {vector2.GetCoordinateByIndex(index)}, по индексу {index}");
+            vector2[index] = 33;
+            Console.WriteLine($"Координата вектора {vector2[index]}, по индексу {index}");
 
             var vector6 = new Vector(new double[]
             {
@@ -89,10 +89,10 @@ namespace Vector
             Console.WriteLine($"Сравнение векторов по Equals: {vector6.Equals(vector10)}");
             Console.WriteLine();
 
-            var vector11 = Vector.GetSum(vector7, vector8);
+            var vector11 = Vector.Add(vector7, vector8);
             Console.WriteLine($"Сумма векторов: {vector11}");
 
-            var vector12 = Vector.GetDifference(vector11, vector7);
+            var vector12 = Vector.Substrate(vector11, vector7);
             Console.WriteLine($"Разница векторов: {vector12}");
 
             var scalarProduct = Vector.GetScalarProduct(vector11, vector8);
