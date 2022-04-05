@@ -1,0 +1,16 @@
+C:\Users\Админ\source\repos\WpfApp11.2\WpfApp11.2\bin\Debug\WpfApp11.2.exe.config
+C:\Users\Админ\source\repos\WpfApp11.2\WpfApp11.2\bin\Debug\WpfApp11.2.exe
+C:\Users\Админ\source\repos\WpfApp11.2\WpfApp11.2\bin\Debug\WpfApp11.2.pdb
+C:\Users\Админ\source\repos\WpfApp11.2\WpfApp11.2\obj\Debug\WpfApp11.2.csproj.AssemblyReference.cache
+C:\Users\Админ\source\repos\WpfApp11.2\WpfApp11.2\obj\Debug\WpfApp11.2.csproj.SuggestedBindingRedirects.cache
+C:\Users\Админ\source\repos\WpfApp11.2\WpfApp11.2\obj\Debug\MainWindow.g.cs
+C:\Users\Админ\source\repos\WpfApp11.2\WpfApp11.2\obj\Debug\App.g.cs
+C:\Users\Админ\source\repos\WpfApp11.2\WpfApp11.2\obj\Debug\WpfApp11.2_MarkupCompile.cache
+C:\Users\Админ\source\repos\WpfApp11.2\WpfApp11.2\obj\Debug\WpfApp11.2_MarkupCompile.lref
+C:\Users\Админ\source\repos\WpfApp11.2\WpfApp11.2\obj\Debug\MainWindow.baml
+C:\Users\Админ\source\repos\WpfApp11.2\WpfApp11.2\obj\Debug\WpfApp11.2.g.resources
+C:\Users\Админ\source\repos\WpfApp11.2\WpfApp11.2\obj\Debug\WpfApp11._2.Properties.Resources.resources
+C:\Users\Админ\source\repos\WpfApp11.2\WpfApp11.2\obj\Debug\WpfApp11.2.csproj.GenerateResource.cache
+C:\Users\Админ\source\repos\WpfApp11.2\WpfApp11.2\obj\Debug\WpfApp11.2.csproj.CoreCompileInputs.cache
+C:\Users\Админ\source\repos\WpfApp11.2\WpfApp11.2\obj\Debug\WpfApp11.2.exe
+C:\Users\Админ\source\repos\WpfApp11.2\WpfApp11.2\obj\Debug\WpfApp11.2.pdb
