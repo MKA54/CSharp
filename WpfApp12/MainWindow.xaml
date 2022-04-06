@@ -7,14 +7,14 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="400">
     <Window.Resources>
-        <RectangleGeometry x:Key="rect1" Rect="0,40,15,2">
+        <RectangleGeometry x:Key="rect1" Rect="0,33,25,2">
             <RectangleGeometry.Transform>
-                <RotateTransform Angle="45"></RotateTransform>
+                <RotateTransform></RotateTransform>
             </RectangleGeometry.Transform>
         </RectangleGeometry>
-        <RectangleGeometry x:Key="rect2"  Rect="0,-40,15,2">
+        <RectangleGeometry x:Key="rect2"  Rect="0,33,25,2">
             <RectangleGeometry.Transform>
-                <RotateTransform Angle="135"></RotateTransform>
+                <RotateTransform Angle="66"></RotateTransform>
             </RectangleGeometry.Transform>
         </RectangleGeometry>
     </Window.Resources>
@@ -44,7 +44,7 @@
                 <ControlTemplate TargetType="CheckBox">
                     <Grid>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="45"></RowDefinition>
+                            <RowDefinition></RowDefinition>
                             <RowDefinition Height="Auto"></RowDefinition>
                         </Grid.RowDefinitions>
                         <Path Stroke="Gray" HorizontalAlignment="Center">
@@ -75,8 +75,10 @@
                         </Grid.RowDefinitions>
                         <Ellipse Width="10" Height="10" Stroke="Gray" Fill="Gray"
                                  HorizontalAlignment="Right" Margin="0,0, 30, 0" />
-                        <ContentPresenter Grid.Row="1">
-
+                        <ContentPresenter Grid.Row="1" HorizontalAlignment="Center">
+                            <ContentPresenter.Content>
+                                Cheked
+                            </ContentPresenter.Content>
                         </ContentPresenter>
                     </Grid>
                 </ControlTemplate>
