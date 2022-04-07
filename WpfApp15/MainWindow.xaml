@@ -1,0 +1,227 @@
+﻿<Window x:Class="WpfApp15.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp15"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <FlowDocumentScrollViewer>
+            <FlowDocument>
+                <Paragraph FontSize="18">
+                    <Bold>
+                        Категория:
+                        <Run Foreground="Red">Горячие блюда из курицы</Run>
+                    </Bold>
+                </Paragraph>
+
+                <Paragraph FontSize="16">
+                    <Floater Width="300" HorizontalAlignment="Right">
+                        <BlockUIContainer>
+                            <Image Source="Data/photo.jpg"></Image>
+                        </BlockUIContainer>
+                    </Floater>
+                    Название:
+                    <Bold>
+                        <Italic>«Курица в ажуре из картофеля»</Italic>
+                    </Bold>
+                </Paragraph>
+
+                <Paragraph>
+                    <Bold>
+                        Ингредиенты:
+                    </Bold>
+
+                </Paragraph>
+
+                <List MarkerStyle="Box">
+                    <ListItem>
+                        <Paragraph>
+                            Грудка куриная (крупные) — 2 шт
+                        </Paragraph>
+                    </ListItem>
+                    <ListItem>
+                        <Paragraph>
+                            Яйцо куриное — 1 шт
+                        </Paragraph>
+                    </ListItem>
+                    <ListItem>
+                        <Paragraph>
+                            Мука пшеничная / Мука — 2 ст. л.
+                        </Paragraph>
+                    </ListItem>
+                    <ListItem>
+                        <Paragraph>
+                            Сыр твердый (тертый) — 100 г
+                        </Paragraph>
+                    </ListItem>
+                    <ListItem>
+                        <Paragraph>
+                            Петрушка (зелень) — 1 пуч.
+                        </Paragraph>
+                    </ListItem>
+                    <ListItem>
+                        <Paragraph>
+                            Соль — по вкусу
+                        </Paragraph>
+                    </ListItem>
+                    <ListItem>
+                        <Paragraph>
+                            Перец черный
+                        </Paragraph>
+                    </ListItem>
+                    <ListItem>
+                        <Paragraph>
+                            Масло растительное
+                        </Paragraph>
+                    </ListItem>
+                </List>
+
+                <Paragraph>
+                    Время приготовления:
+                    <Underline>20 минут</Underline>
+                </Paragraph>
+                <Paragraph>
+                    Количество порций: 3
+                </Paragraph>
+
+                <Paragraph>
+                    <Bold>
+                        Пищевая и энергетическая ценность готвого блюда
+                        <Underline>1913.2 ккал</Underline> :
+                    </Bold>
+
+                </Paragraph>
+
+                <Table BorderBrush="Gray" BorderThickness="1">
+                    <Table.Columns>
+                        <TableColumn />
+                        <TableColumn />
+                    </Table.Columns>
+                    <TableRowGroup>
+                        <TableRow>
+                            <TableCell>
+                                <Paragraph>
+                                    Питательные вещества
+                                </Paragraph>
+                            </TableCell>
+                            <TableCell>
+                                <Paragraph>
+                                    Количество грамм
+                                </Paragraph>
+                            </TableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell>
+                                <Paragraph>
+                                    белки
+                                </Paragraph>
+                            </TableCell>
+                            <TableCell>
+                                <Paragraph>
+                                    192.8
+                                </Paragraph>
+                            </TableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell>
+                                <Paragraph>
+                                    жиры
+                                </Paragraph>
+                            </TableCell>
+                            <TableCell>
+                                <Paragraph>
+                                    34
+                                </Paragraph>
+                            </TableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell>
+                                <Paragraph>
+                                    углеводы
+                                </Paragraph>
+                            </TableCell>
+                            <TableCell>
+                                <Paragraph>
+                                    208.9
+                                </Paragraph>
+                            </TableCell>
+                        </TableRow>
+                    </TableRowGroup>
+                </Table>
+
+                <Paragraph>
+                    <Bold>
+                        Порядок приготовления:
+                    </Bold>
+                </Paragraph>
+
+                <List MarkerStyle="Box">
+                    <ListItem>
+                        <Paragraph>
+                            Порезать зелень и перемешайть с сыром
+                        </Paragraph>
+                    </ListItem>
+                    <ListItem>
+                        <Paragraph>
+                            Мясо курицы порезать тонкими пластиками
+                        </Paragraph>
+                    </ListItem>
+                    <ListItem>
+                        <Paragraph>
+                            Обжарить мясо на сухой разогретой сковородке (буквально 2-3 минуты помешивая), посолив и поперчив
+                        </Paragraph>
+                    </ListItem>
+                    <ListItem>
+                        <Paragraph>
+                            Картофель почистить, натереть на крупной терке, хорошенько отжать
+                        </Paragraph>
+                    </ListItem>
+                    <ListItem>
+                        <Paragraph>
+                            Добавить в картофель яйца, муку, соль и перемешать
+                        </Paragraph>
+                    </ListItem>
+                    <ListItem>
+                        <Paragraph>
+                            Разогреть сковороду, налить растительное масло (чтобы покрыло дно сковороды)
+                        </Paragraph>
+                    </ListItem>
+                    <ListItem>
+                        <Paragraph>
+                            Распределить тертый картофель по дну и прижать лопаточкой
+                        </Paragraph>
+                    </ListItem>
+                    <ListItem>
+                        <Paragraph>
+                            Таким образом получается блин картофельный
+                        </Paragraph>
+                    </ListItem>
+                    <ListItem>
+                        <Paragraph>
+                            Когда блин готов с одной стороны (жарится 2-3 минуты), перевернуть и выдложить на половину блина курицу
+                        </Paragraph>
+                    </ListItem>
+                    <ListItem>
+                        <Paragraph>
+                            Сверху посыпать тертым сыром с зеленью и ждем 2-3 минуты когда поджарится вторая сторона блина, а сыр начнет плавиться
+                        </Paragraph>
+                    </ListItem>
+                    <ListItem>
+                        <Paragraph>
+                            Свободной стороной картофельного блина накрыть курицу с сыром, по минутке на каждой стороне обжарить
+                        </Paragraph>
+                    </ListItem>
+                </List>
+
+                <Paragraph TextAlignment="Center" FontSize="16">
+                    <Bold>
+                        Приятного аппетита!!!)))
+                    </Bold>
+                </Paragraph>
+
+            </FlowDocument>
+        </FlowDocumentScrollViewer>
+    </Grid>
+</Window>
