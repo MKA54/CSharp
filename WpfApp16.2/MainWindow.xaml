@@ -8,14 +8,14 @@
         Title="MainWindow" Height="450" Width="600">
     <Window.Resources>
         <PathGeometry x:Key="path">
-            <PathFigure StartPoint="400, 200" IsClosed="True">
-                <ArcSegment Size="100, 100" Point="400, 199" IsLargeArc="True" SweepDirection="Clockwise" />
+            <PathFigure StartPoint="140, 250">
+                <ArcSegment Size="100, 100" Point="440, 249" IsLargeArc="True" SweepDirection="Clockwise" />
             </PathFigure>
         </PathGeometry>
     </Window.Resources>
     <Canvas>
         <Path Data="{StaticResource path}" Stroke="Red"></Path>
-        <Ellipse HorizontalAlignment="Left" Height="24" Stroke="Black" VerticalAlignment="Top" Width="26" Canvas.Left="400" RenderTransformOrigin="-0.115,-2.29" Canvas.Top="200">
+        <Ellipse HorizontalAlignment="Left" Height="24" Stroke="Black" VerticalAlignment="Top" Width="26" Canvas.Left="140" RenderTransformOrigin="-0.115,-2.29" Canvas.Top="250">
             <Ellipse.Fill>
                 <RadialGradientBrush GradientOrigin="0.331,0.263" RadiusX="0.471" RadiusY="0.471">
                     <GradientStop Color="Black" Offset="1"/>
@@ -27,18 +27,20 @@
                     <BeginStoryboard>
                         <Storyboard>
                             <DoubleAnimationUsingPath Storyboard.TargetProperty="(Canvas.Top)"
-                                Duration="0:0:5"
+                                Duration="0:0:4"
                                 RepeatBehavior="Forever"
                                 PathGeometry="{StaticResource path}"
-                                Source="Y" />
+                                AccelerationRatio="0.7"
+                                Source="Y"/>
                         </Storyboard>
                     </BeginStoryboard>
                     <BeginStoryboard>
                         <Storyboard>
                             <DoubleAnimationUsingPath Storyboard.TargetProperty="(Canvas.Left)"
-                                Duration="0:0:5"
+                                Duration="0:0:4"
                                 RepeatBehavior="Forever"
                                 PathGeometry="{StaticResource path}"
+                                AccelerationRatio="0.7"
                                 Source="X" />
                         </Storyboard>
                     </BeginStoryboard>
