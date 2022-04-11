@@ -9,12 +9,12 @@
     <Window.Resources>
         <RectangleGeometry x:Key="rect1" Rect="0,33,25,2">
             <RectangleGeometry.Transform>
-                <RotateTransform></RotateTransform>
+                <RotateTransform Angle="-45"/>
             </RectangleGeometry.Transform>
         </RectangleGeometry>
         <RectangleGeometry x:Key="rect2"  Rect="0,33,25,2">
             <RectangleGeometry.Transform>
-                <RotateTransform Angle="66"></RotateTransform>
+                <RotateTransform Angle="45"></RotateTransform>
             </RectangleGeometry.Transform>
         </RectangleGeometry>
     </Window.Resources>
@@ -65,7 +65,7 @@
                 </ControlTemplate>
             </CheckBox.Template>
         </CheckBox>
-        <CheckBox>
+        <CheckBox Margin="3,2,-3,-3" RenderTransformOrigin="0.393,0.124">
             <CheckBox.Template>
                 <ControlTemplate TargetType="CheckBox">
                     <Grid>
