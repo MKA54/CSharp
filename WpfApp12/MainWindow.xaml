@@ -32,8 +32,8 @@
                 <ControlTemplate TargetType="CheckBox">
                     <Grid>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="25"></RowDefinition>
-                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
                         </Grid.RowDefinitions>
                         <Rectangle Width="24" Height="24" RadiusX="4" RadiusY="4" 
                                    HorizontalAlignment="Left" Margin="12,0, 0, 0" 
@@ -52,13 +52,13 @@
                 <ControlTemplate TargetType="CheckBox">
                     <Grid>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"></RowDefinition>
-                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
                         </Grid.RowDefinitions>
                         <Path Stroke="Gray" StrokeThickness="2">
                             <Path.Data>
                                 <GeometryGroup>
-                                    <RectangleGeometry Rect="60, 22, 23, 23" RadiusX="4" RadiusY="4" />
+                                    <RectangleGeometry Rect="60, 25, 23, 23" RadiusX="4" RadiusY="4" />
                                     <CombinedGeometry GeometryCombineMode="Union"
                                                       CombinedGeometry.Geometry1="{StaticResource rect1}"
                                                       CombinedGeometry.Geometry2="{StaticResource rect2}">
@@ -80,14 +80,14 @@
                 <ControlTemplate TargetType="CheckBox">
                     <Grid>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"></RowDefinition>
-                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
                         </Grid.RowDefinitions>
                         <Path Stroke="Gray" StrokeThickness="2">
                             <Path.Data>
                                 <GeometryGroup>
-                                    <RectangleGeometry Rect="60, 22, 23, 23" RadiusX="4" RadiusY="4"></RectangleGeometry>
-                                    <EllipseGeometry Center="71.5,34" RadiusX="5" RadiusY="5"></EllipseGeometry>
+                                    <RectangleGeometry Rect="60, 25, 23, 23" RadiusX="4" RadiusY="4"></RectangleGeometry>
+                                    <EllipseGeometry Center="71.5,36" RadiusX="5" RadiusY="5"></EllipseGeometry>
                                 </GeometryGroup>
                             </Path.Data>
                         </Path>
