@@ -7,19 +7,27 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="400">
     <Window.Resources>
-        <RectangleGeometry x:Key="rect1" Rect="0,33,25,2">
-            <RectangleGeometry.Transform>
-                <RotateTransform Angle="-45"/>
-            </RectangleGeometry.Transform>
-        </RectangleGeometry>
-        <RectangleGeometry x:Key="rect2"  Rect="0,33,25,2">
+        <RectangleGeometry x:Key="rect1" Rect="70, 28, 1, 10">
             <RectangleGeometry.Transform>
                 <RotateTransform Angle="45"></RotateTransform>
             </RectangleGeometry.Transform>
         </RectangleGeometry>
+        <RectangleGeometry x:Key="rect2" Rect="70, 95, 1, 10">
+            <RectangleGeometry.Transform>
+                <RotateTransform Angle="-45"></RotateTransform>
+            </RectangleGeometry.Transform>
+        </RectangleGeometry>
     </Window.Resources>
     <Grid>
-        <CheckBox Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <CheckBox Margin="20" Grid.Row="0" Grid.Column="0">
             <CheckBox.Template>
                 <ControlTemplate TargetType="CheckBox">
                     <Grid>
@@ -39,45 +47,53 @@
                 </ControlTemplate>
             </CheckBox.Template>
         </CheckBox>
-        <CheckBox>
+        <CheckBox Grid.Column="1">
             <CheckBox.Template>
                 <ControlTemplate TargetType="CheckBox">
                     <Grid>
                         <Grid.RowDefinitions>
-                            <RowDefinition></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
                             <RowDefinition Height="Auto"></RowDefinition>
                         </Grid.RowDefinitions>
-                        <Path Stroke="Gray" HorizontalAlignment="Center">
+                        <Path Stroke="Gray" StrokeThickness="2">
                             <Path.Data>
                                 <GeometryGroup>
+                                    <RectangleGeometry Rect="60, 22, 23, 23" RadiusX="4" RadiusY="4" />
                                     <CombinedGeometry GeometryCombineMode="Union"
-                                                  Geometry1="{StaticResource rect1}"
-                                                  Geometry2="{StaticResource rect2}" />
+                                                      CombinedGeometry.Geometry1="{StaticResource rect1}"
+                                                      CombinedGeometry.Geometry2="{StaticResource rect2}">
+                                    </CombinedGeometry>
                                 </GeometryGroup>
                             </Path.Data>
                         </Path>
                         <ContentPresenter Grid.Row="1" HorizontalAlignment="Center">
                             <ContentPresenter.Content>
-                                Cheked
+                                UnCheked
                             </ContentPresenter.Content>
                         </ContentPresenter>
                     </Grid>
                 </ControlTemplate>
             </CheckBox.Template>
         </CheckBox>
-        <CheckBox Margin="3,2,-3,-3" RenderTransformOrigin="0.393,0.124">
+        <CheckBox Grid.Column="2">
             <CheckBox.Template>
                 <ControlTemplate TargetType="CheckBox">
                     <Grid>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="74"></RowDefinition>
-                            <RowDefinition></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
                         </Grid.RowDefinitions>
-                        <Ellipse Width="10" Height="10" Stroke="Gray" Fill="Gray"
-                                 HorizontalAlignment="Right" Margin="0,0, 30, 0" />
+                        <Path Stroke="Gray" StrokeThickness="2">
+                            <Path.Data>
+                                <GeometryGroup>
+                                    <RectangleGeometry Rect="60, 22, 23, 23" RadiusX="4" RadiusY="4"></RectangleGeometry>
+                                    <EllipseGeometry Center="71.5,34" RadiusX="5" RadiusY="5"></EllipseGeometry>
+                                </GeometryGroup>
+                            </Path.Data>
+                        </Path>
                         <ContentPresenter Grid.Row="1" HorizontalAlignment="Center">
                             <ContentPresenter.Content>
-                                Cheked
+                                Indeterminate
                             </ContentPresenter.Content>
                         </ContentPresenter>
                     </Grid>
