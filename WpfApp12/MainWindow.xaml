@@ -7,14 +7,14 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="400">
     <Window.Resources>
-        <RectangleGeometry x:Key="rect1" Rect="70, 28, 1, 10">
+        <RectangleGeometry x:Key="rect1" Rect="50, 25, 10, 1">
             <RectangleGeometry.Transform>
-                <RotateTransform Angle="45"></RotateTransform>
+                <RotateTransform Angle="0"></RotateTransform>
             </RectangleGeometry.Transform>
         </RectangleGeometry>
-        <RectangleGeometry x:Key="rect2" Rect="70, 95, 1, 10">
+        <RectangleGeometry x:Key="rect2" Rect="50, 25, 10, 1">
             <RectangleGeometry.Transform>
-                <RotateTransform Angle="-45"></RotateTransform>
+                <RotateTransform Angle="0"></RotateTransform>
             </RectangleGeometry.Transform>
         </RectangleGeometry>
     </Window.Resources>
@@ -27,7 +27,7 @@
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <CheckBox Margin="20" Grid.Row="0" Grid.Column="0">
+        <CheckBox Margin="25" Grid.Row="0" Grid.Column="0">
             <CheckBox.Template>
                 <ControlTemplate TargetType="CheckBox">
                     <Grid>
@@ -35,10 +35,9 @@
                             <RowDefinition></RowDefinition>
                             <RowDefinition></RowDefinition>
                         </Grid.RowDefinitions>
-                        <Rectangle Width="24" Height="24" RadiusX="4" RadiusY="4" 
-                                   HorizontalAlignment="Left" Margin="12,0, 0, 0" 
+                        <Rectangle Width="22" Height="22" RadiusX="4" RadiusY="4" 
                                    Stroke="Gray" StrokeThickness="2" />
-                        <ContentPresenter Grid.Row="1">
+                        <ContentPresenter Grid.Row="1" HorizontalAlignment="Center">
                             <ContentPresenter.Content>
                                 Cheked
                             </ContentPresenter.Content>
@@ -47,10 +46,10 @@
                 </ControlTemplate>
             </CheckBox.Template>
         </CheckBox>
-        <CheckBox Grid.Column="1">
+        <CheckBox Grid.Column="1" Margin="12">
             <CheckBox.Template>
                 <ControlTemplate TargetType="CheckBox">
-                    <Grid>
+                    <Grid RenderTransformOrigin="0.505,0.402">
                         <Grid.RowDefinitions>
                             <RowDefinition></RowDefinition>
                             <RowDefinition></RowDefinition>
@@ -58,7 +57,7 @@
                         <Path Stroke="Gray" StrokeThickness="2">
                             <Path.Data>
                                 <GeometryGroup>
-                                    <RectangleGeometry Rect="60, 25, 23, 23" RadiusX="4" RadiusY="4" />
+                                    <RectangleGeometry Rect="45, 15, 21, 21" RadiusX="4" RadiusY="4" />
                                     <CombinedGeometry GeometryCombineMode="Union"
                                                       CombinedGeometry.Geometry1="{StaticResource rect1}"
                                                       CombinedGeometry.Geometry2="{StaticResource rect2}">
@@ -75,22 +74,17 @@
                 </ControlTemplate>
             </CheckBox.Template>
         </CheckBox>
-        <CheckBox Grid.Column="2">
+        <CheckBox Grid.Column="2" Margin="25">
             <CheckBox.Template>
                 <ControlTemplate TargetType="CheckBox">
-                    <Grid>
+                    <Grid RenderTransformOrigin="0.505,0.26">
                         <Grid.RowDefinitions>
                             <RowDefinition></RowDefinition>
                             <RowDefinition></RowDefinition>
                         </Grid.RowDefinitions>
-                        <Path Stroke="Gray" StrokeThickness="2">
-                            <Path.Data>
-                                <GeometryGroup>
-                                    <RectangleGeometry Rect="60, 25, 23, 23" RadiusX="4" RadiusY="4"></RectangleGeometry>
-                                    <EllipseGeometry Center="71.5,36" RadiusX="5" RadiusY="5"></EllipseGeometry>
-                                </GeometryGroup>
-                            </Path.Data>
-                        </Path>
+                        <Rectangle Width="22" Height="22" Stroke="Gray" RadiusX="4" RadiusY="4" 
+                                   StrokeThickness="2"/>
+                        <Ellipse Grid.Row="0" Width="8" Height="8" Fill="Gray" ></Ellipse>
                         <ContentPresenter Grid.Row="1" HorizontalAlignment="Center">
                             <ContentPresenter.Content>
                                 Indeterminate
