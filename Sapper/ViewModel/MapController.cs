@@ -9,7 +9,8 @@ namespace Sapper.ViewModel
         private static int MapSize = 8;
         private static int CellSize = 50;
         private static int bombsCount = 2;
-        private static int cellsOpened;
+        private static int _cellsOpened;
+        private static readonly int CellsCount = MapSize * MapSize;
 
         private static int _currentPictureToSet;
 
@@ -27,8 +28,8 @@ namespace Sapper.ViewModel
         public static void Init(Form current)
         {
             _form = current;
+            _cellsOpened = 0;
             _currentPictureToSet = 0;
-            cellsOpened = 0;
             _isFirstSteep = true;
             _spriteSet = new Bitmap("C:\\Users\\Админ\\source\\repos\\CSharp\\Sapper\\Sprites\\tiles.png");
 
@@ -136,25 +137,28 @@ namespace Sapper.ViewModel
             if (_isFirstSteep)
             {
                 _firstCoord = new Point(jButton, iButton);
+                _cellsOpened++;
                 SeedMap();
                 CountCellBomb();
                 _isFirstSteep = false;
             }
 
-            OpenCells(iButton, jButton);
-
-            if (Map[iButton, jButton] != -1)
+            if (_cellsOpened == CellsCount - bombsCount)
             {
-                return;
+                MessageBox.Show("Вы победили!" + _cellsOpened);
+                _form.Controls.Clear();
+                Init(_form);
             }
 
-            ShowAllBox(iButton, jButton);
+            OpenCells(iButton, jButton);
 
-            MessageBox.Show("Вы проиграли" + cellsOpened);
-            _form.Controls.Clear();
-
-            Init(_form);
-
+            if (Map[iButton, jButton] == -1)
+            {
+                ShowAllBox(iButton, jButton);
+                MessageBox.Show("Вы проиграли!" + _cellsOpened);
+                _form.Controls.Clear();
+                Init(_form);
+            }
         }
 
         private static void SeedMap()
@@ -246,6 +250,8 @@ namespace Sapper.ViewModel
                     Buttons[i, j].Image = FindNeededImage(0, 0);
                     break;
             }
+
+            _cellsOpened++;
         }
 
         private static void OpenCells(int i, int j)
@@ -254,7 +260,6 @@ namespace Sapper.ViewModel
 
             if (Map[i, j] > 0)
             {
-                cellsOpened++;
                 return;
             }
 
@@ -277,15 +282,11 @@ namespace Sapper.ViewModel
                         OpenCells(k, l);
                     }
 
-
-                    OpenCell(k, l);
-                    cellsOpened++;
+                    else if (Map[k, l] > 0)
+                    {
+                        OpenCell(k, l);
+                    }
                 }
-            }
-
-            if (CheckWin())
-            {
-                MessageBox.Show("Вы победили!");
             }
         }
 
@@ -306,13 +307,6 @@ namespace Sapper.ViewModel
                     }
                 }
             }
-        }
-
-        private static bool CheckWin()
-        {
-            var cellsCount = MapSize * MapSize;
-
-            return cellsOpened == cellsCount - bombsCount;
         }
     }
 }
