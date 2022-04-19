@@ -137,11 +137,13 @@ namespace Sapper.ViewModel
             if (_isFirstSteep)
             {
                 _firstCoord = new Point(jButton, iButton);
-                _cellsOpened++;
+
                 SeedMap();
                 CountCellBomb();
                 _isFirstSteep = false;
             }
+
+            OpenCells(iButton, jButton);
 
             if (_cellsOpened == CellsCount - bombsCount)
             {
@@ -150,8 +152,6 @@ namespace Sapper.ViewModel
 
                 Reboot();
             }
-
-            OpenCells(iButton, jButton);
 
             if (Map[iButton, jButton] != -1)
             {
