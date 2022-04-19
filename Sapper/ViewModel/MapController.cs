@@ -145,20 +145,29 @@ namespace Sapper.ViewModel
 
             if (_cellsOpened == CellsCount - bombsCount)
             {
-                MessageBox.Show("Вы победили!" + _cellsOpened);
-                _form.Controls.Clear();
-                Init(_form);
+                ShowAllBox(iButton, jButton);
+                MessageBox.Show("Вы победили!");
+
+                Reboot();
             }
 
             OpenCells(iButton, jButton);
 
-            if (Map[iButton, jButton] == -1)
+            if (Map[iButton, jButton] != -1)
             {
-                ShowAllBox(iButton, jButton);
-                MessageBox.Show("Вы проиграли!" + _cellsOpened);
-                _form.Controls.Clear();
-                Init(_form);
+                return;
             }
+
+            ShowAllBox(iButton, jButton);
+            MessageBox.Show("Вы проиграли!");
+
+            Reboot();
+        }
+
+        private static void Reboot()
+        {
+            _form.Controls.Clear();
+            Init(_form);
         }
 
         private static void SeedMap()
