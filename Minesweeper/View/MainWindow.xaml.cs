@@ -10,26 +10,29 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Minesweeper.ViewModel;
 
-namespace Minesweeper
+namespace Minesweeper.View
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Логика взаимодействия для Window1.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
         public MainWindow()
         {
             InitializeComponent();
+            controller = new MinesweeperController(_level, this);
         }
 
-        private void ComboBox_Selected(object sender, RoutedEventArgs e)
+        private int _level;
+        private MinesweeperController controller;
+
+        public void ComboBox_Selected(object sender, RoutedEventArgs e)
         {
-            ComboBox comboBox = (ComboBox)sender;
-            ComboBoxItem selectedItem = (ComboBoxItem)comboBox.SelectedItem;
-            MessageBox.Show(selectedItem.Content.ToString());
+            var comboBox = (ComboBox)sender;
+            _level = comboBox.SelectedIndex;
         }
     }
 }
