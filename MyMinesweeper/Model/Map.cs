@@ -1,26 +1,42 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
 using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace MyMinesweeper.Model
 {
     public class Map
     {
-        public const int _width = 6;
-        public const int _height = 6;
-        public const int cellSize = 35;
-        private const int ButtonImageOffsetStep = 16;
-        private const int cellsCount = _width * _height;
-        private const int bombsCount = 2;
+        public static void Init(int width, int height, int bombsCount)
+        {
+            _width = width;
+            _height = height;
+            _bombsCount = bombsCount;
+            _cellsCount = _width * _height;
+            map = new int[_height, _width];
+            _buttons = new Button[_height, _width];
+            _isFirstStep = true;
+            _currentPictureToSet = 0;
+            _openCellsCount = 0;
+            _buttonTypesImageSource = new BitmapImage(ButtonTypeUri);
+            _gamePanel = new StackPanel();
 
-        public static readonly Uri ButtonTypeUri = new Uri("C:\\Users\\Админ\\source\\repos\\CSharp\\MyMinesweeper\\Images\\ButtonTypes.bmp", UriKind.Absolute);
+            _window.Width = _width * CellSize + 15;
+            _window.Height = _height * CellSize + 68;
+
+            InitMap();
+            InitButtons();
+        }
+
+        private static int CellSize = 25;
+        private static int ButtonImageOffsetStep = 16;
+        private static int _cellsCount;
+        private static int _width;
+        private static int _height;
+        private static int _bombsCount;
+
+        private static Uri ButtonTypeUri = new Uri("C:\\Users\\Админ\\source\\repos\\CSharp\\MyMinesweeper\\Images\\ButtonTypes.bmp",
+            UriKind.Absolute);
         private static BitmapSource _buttonTypesImageSource;
         private static bool _isFirstStep;
         private static Point _firstCoord;
@@ -28,20 +44,22 @@ namespace MyMinesweeper.Model
         private static int _openCellsCount;
         private static StackPanel _gamePanel;
 
-        public static int[,] map = new int[_height, _width];
-        public static Button[,] Buttons = new Button[_height, _width];
-
-        public static void Init(StackPanel gamePanel)
+        public static StackPanel GamePanel
         {
-            _gamePanel = gamePanel;
-            _isFirstStep = true;
-            _currentPictureToSet = 0;
-            _openCellsCount = 0;
-            _buttonTypesImageSource = new BitmapImage(ButtonTypeUri);
-
-            InitMap();
-            InitButtons();
+            get => _gamePanel;
+            set => _gamePanel = value;
         }
+
+        private static Window _window;
+
+        public static Window Window
+        {
+            get => _window;
+            set => _window = value;
+        }
+
+        private static int[,] map;
+        private static Button[,] _buttons;
 
         private static void InitMap()
         {
@@ -68,8 +86,8 @@ namespace MyMinesweeper.Model
                 {
                     var button = new Button
                     {
-                        Width = cellSize,
-                        Height = cellSize,
+                        Width = CellSize,
+                        Height = CellSize,
 
                         Content = FindNeededImage(0)
                     };
@@ -78,7 +96,7 @@ namespace MyMinesweeper.Model
                     button.MouseRightButtonDown += OnRightButtonPressed;
                     button.Tag = $"{i},{j}";
 
-                    Buttons[i, j] = button;
+                    _buttons[i, j] = button;
 
                     row.Children.Add(button);
                 }
@@ -91,12 +109,12 @@ namespace MyMinesweeper.Model
         {
             var r = new Random();
 
-            for (var i = 0; i < bombsCount; i++)
+            for (var i = 0; i < _bombsCount; i++)
             {
                 var posI = r.Next(0, _height - 1);
                 var posJ = r.Next(0, _width - 1);
 
-                while (map[posI, posJ] == -1 || (Math.Abs(posI - _firstCoord.Y) <= 1 && Math.Abs(posJ - _firstCoord.X) <= 1))
+                while (map[posI, posJ] == -1 || (Math.Abs(posI - _firstCoord.X) <= 1 && Math.Abs(posJ - _firstCoord.Y) <= 1))
                 {
                     posI = r.Next(0, _height - 1);
                     posJ = r.Next(0, _width - 1);
@@ -128,7 +146,7 @@ namespace MyMinesweeper.Model
             if (IsVictory())
             {
                 ShowAllBombs(state[0], state[1]);
-                MessageBox.Show("Победа!" + _openCellsCount);
+                MessageBox.Show("Победа!");
                 Restart();
             }
 
@@ -138,14 +156,20 @@ namespace MyMinesweeper.Model
             }
 
             ShowAllBombs(state[0], state[1]);
-            MessageBox.Show("Поражение!" + _openCellsCount);
+            MessageBox.Show("Поражение!");
             Restart();
         }
 
         public static void Restart()
         {
             _gamePanel.Children.Clear();
-            Init(_gamePanel);
+            _isFirstStep = true;
+            _currentPictureToSet = 0;
+            _openCellsCount = 0;
+
+
+            InitMap();
+            InitButtons();
         }
 
         private static void OnRightButtonPressed(object v, RoutedEventArgs e)
@@ -171,40 +195,40 @@ namespace MyMinesweeper.Model
 
         private static void OpenCell(int i, int j)
         {
-            Buttons[i, j].IsEnabled = false;
+            _buttons[i, j].IsEnabled = false;
             _openCellsCount++;
 
             switch (map[i, j])
             {
                 case 1:
-                    Buttons[i, j].Content = FindNeededImage(14);
+                    _buttons[i, j].Content = FindNeededImage(14);
                     break;
                 case 2:
-                    Buttons[i, j].Content = FindNeededImage(13);
+                    _buttons[i, j].Content = FindNeededImage(13);
                     break;
                 case 3:
-                    Buttons[i, j].Content = FindNeededImage(12);
+                    _buttons[i, j].Content = FindNeededImage(12);
                     break;
                 case 4:
-                    Buttons[i, j].Content = FindNeededImage(11);
+                    _buttons[i, j].Content = FindNeededImage(11);
                     break;
                 case 5:
-                    Buttons[i, j].Content = FindNeededImage(10);
+                    _buttons[i, j].Content = FindNeededImage(10);
                     break;
                 case 6:
-                    Buttons[i, j].Content = FindNeededImage(9);
+                    _buttons[i, j].Content = FindNeededImage(9);
                     break;
                 case 7:
-                    Buttons[i, j].Content = FindNeededImage(8);
+                    _buttons[i, j].Content = FindNeededImage(8);
                     break;
                 case 8:
-                    Buttons[i, j].Content = FindNeededImage(7);
+                    _buttons[i, j].Content = FindNeededImage(7);
                     break;
                 case -1:
-                    Buttons[i, j].Content = FindNeededImage(4);
+                    _buttons[i, j].Content = FindNeededImage(4);
                     break;
                 case 0:
-                    Buttons[i, j].Content = FindNeededImage(15);
+                    _buttons[i, j].Content = FindNeededImage(15);
                     break;
             }
         }
@@ -227,7 +251,7 @@ namespace MyMinesweeper.Model
                         continue;
                     }
 
-                    if (!Buttons[k, l].IsEnabled)
+                    if (!_buttons[k, l].IsEnabled)
                     {
                         continue;
                     }
@@ -258,7 +282,7 @@ namespace MyMinesweeper.Model
 
                     if (map[i, j] == -1)
                     {
-                        Buttons[i, j].Content = FindNeededImage(3);
+                        _buttons[i, j].Content = FindNeededImage(3);
                     }
                 }
             }
@@ -308,7 +332,7 @@ namespace MyMinesweeper.Model
 
         private static bool IsVictory()
         {
-            return _openCellsCount == cellsCount - bombsCount;
+            return _openCellsCount == _cellsCount - _bombsCount;
         }
     }
 }
