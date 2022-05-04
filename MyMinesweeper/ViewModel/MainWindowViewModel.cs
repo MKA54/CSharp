@@ -9,12 +9,10 @@ namespace MyMinesweeper.ViewModel
 {
     public class MainWindowViewModel : INotifyPropertyChanged
     {
-
-
         public MainWindowViewModel(Window window)
         {
             Map.Window = window;
-            NewGame(16, 16, 30);
+            Map.Init(16, 16, 30);
 
             NewGameCommand = new RelayCommand(OnNewGameCommandExecute, CanNewGameCommandExecuted);
             BeginnerCommand = new RelayCommand(OnBeginnerCommandExecute, CanBeginnerCommandExecuted);

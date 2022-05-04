@@ -7,7 +7,7 @@
         xmlns:viewModel="clr-namespace:MyMinesweeper.ViewModel"
         d:DataContext="{d:DesignInstance viewModel:MainWindowViewModel}"
         mc:Ignorable="d" x:Name="ParentWindow"
-        Title="MainWindow">
+        Title="Minesweeper">
     <StackPanel>
         <Menu Margin="5">
             <MenuItem Header="Game">

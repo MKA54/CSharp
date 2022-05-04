@@ -5,7 +5,7 @@ using System.Windows.Media.Imaging;
 
 namespace MyMinesweeper.Model
 {
-    public class Map
+    public static class Map
     {
         public static void Init(int width, int height, int bombsCount)
         {
