@@ -47,6 +47,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfApp10", "WpfApp10\WpfApp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfApp2", "WpfApp2\WpfApp2.csproj", "{5421B046-286D-419C-BB4E-F21EBA66F34D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMinesweeper", "MyMinesweeper\MyMinesweeper.csproj", "{6E383DA3-899A-467B-B08C-C80B2D9EF2EE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -141,6 +143,10 @@ Global
 		{5421B046-286D-419C-BB4E-F21EBA66F34D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5421B046-286D-419C-BB4E-F21EBA66F34D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5421B046-286D-419C-BB4E-F21EBA66F34D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E383DA3-899A-467B-B08C-C80B2D9EF2EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E383DA3-899A-467B-B08C-C80B2D9EF2EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E383DA3-899A-467B-B08C-C80B2D9EF2EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E383DA3-899A-467B-B08C-C80B2D9EF2EE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
