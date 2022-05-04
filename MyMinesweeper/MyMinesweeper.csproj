@@ -55,21 +55,32 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="MainWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
+    <Compile Include="ViewModel\MainWindowViewModel.cs" />
+    <Compile Include="ViewModel\MineField.cs" />
+    <Compile Include="ViewModel\RelayCommand.cs" />
+    <Compile Include="View\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
+    <Page Include="View\MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\Map.cs" />
+    <Compile Include="obj\Debug\.NETFramework,Version=v4.7.2.AssemblyAttributes.cs" />
+    <Compile Include="obj\Debug\App.g.cs" />
+    <Compile Include="obj\Debug\App.g.i.cs" />
+    <Compile Include="obj\Debug\GeneratedInternalTypeHelper.g.cs" />
+    <Compile Include="obj\Debug\GeneratedInternalTypeHelper.g.i.cs" />
+    <Compile Include="obj\Debug\MainWindow.g.i.cs" />
+    <Compile Include="obj\Debug\MyMinesweeper_Content.g.i.cs" />
+    <Compile Include="obj\Debug\View\MainWindow.g.cs" />
+    <Compile Include="obj\Debug\View\MainWindow.g.i.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -83,10 +94,20 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="obj\Debug\MyMinesweeper.g.resources" />
+    <EmbeddedResource Include="obj\Debug\MyMinesweeper.Properties.Resources.resources" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="bin\Debug\MyMinesweeper.exe.config" />
+    <None Include="obj\Debug\DesignTimeResolveAssemblyReferences.cache" />
+    <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <None Include="obj\Debug\MyMinesweeper.csproj.AssemblyReference.cache" />
+    <None Include="obj\Debug\MyMinesweeper.csproj.CoreCompileInputs.cache" />
+    <None Include="obj\Debug\MyMinesweeper.csproj.GenerateResource.cache" />
+    <None Include="obj\Debug\MyMinesweeper.csproj.SuggestedBindingRedirects.cache" />
+    <None Include="obj\Debug\View\MainWindow.baml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -95,9 +116,19 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="bin\Debug\MyMinesweeper.exe" />
+    <Content Include="bin\Debug\MyMinesweeper.pdb" />
+    <Resource Include="obj\Debug\MyMinesweeper.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\MyMinesweeper.exe" />
+    <Content Include="obj\Debug\MyMinesweeper.pdb" />
+    <Content Include="obj\Debug\TempPE\Properties.Resources.Designer.cs.dll" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\ButtonTypes.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\Release\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
