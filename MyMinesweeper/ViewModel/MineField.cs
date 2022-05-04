@@ -14,7 +14,7 @@ namespace MyMinesweeper.ViewModel
                     typeof(StackPanel),
                     typeof(MineField),
                     new FrameworkPropertyMetadata(
-                        Map.GamePanel,
+                        null,
                         FrameworkPropertyMetadataOptions.AffectsRender,
                         OnFillingChanged));
         }

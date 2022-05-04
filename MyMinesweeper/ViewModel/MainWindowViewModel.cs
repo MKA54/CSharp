@@ -12,7 +12,7 @@ namespace MyMinesweeper.ViewModel
         public MainWindowViewModel(Window window)
         {
             Map.Window = window;
-            Map.Init(16, 16, 30);
+            NewGame(16, 16, 30);
 
             NewGameCommand = new RelayCommand(OnNewGameCommandExecute, CanNewGameCommandExecuted);
             BeginnerCommand = new RelayCommand(OnBeginnerCommandExecute, CanBeginnerCommandExecuted);
