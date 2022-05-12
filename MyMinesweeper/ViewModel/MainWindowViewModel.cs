@@ -53,40 +53,28 @@ namespace MyMinesweeper.ViewModel
             Map.Restart();
         }
 
-        private bool CanNewGameCommandExecuted(object parameter)
-        {
-            return true;
-        }
+        private bool CanNewGameCommandExecuted(object parameter) => true;
 
         private void OnBeginnerCommandExecute(object parameter)
         {
             NewGame(9, 9, 10);
         }
 
-        private bool CanBeginnerCommandExecuted(object parameter)
-        {
-            return true;
-        }
+        private bool CanBeginnerCommandExecuted(object parameter) => true;
 
         private void OnIntermediateCommandExecute(object parameter)
         {
             NewGame(16, 16, 30);
         }
 
-        private bool CanIntermediateCommandExecuted(object parameter)
-        {
-            return true;
-        }
+        private bool CanIntermediateCommandExecuted(object parameter) => true;
 
         private void OnExpertCommandExecute(object parameter)
         {
             NewGame(30, 16, 70);
         }
 
-        private bool CanExpertCommandExecuted(object parameter)
-        {
-            return true;
-        }
+        private bool CanExpertCommandExecuted(object parameter) => true;
 
         private void NewGame(int width, int height, int bombsCount)
         {

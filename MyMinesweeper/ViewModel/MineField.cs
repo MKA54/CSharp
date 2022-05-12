@@ -1,5 +1,4 @@
-﻿using MyMinesweeper.Model;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 
 namespace MyMinesweeper.ViewModel

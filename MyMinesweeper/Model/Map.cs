@@ -13,52 +13,40 @@ namespace MyMinesweeper.Model
             _height = height;
             _bombsCount = bombsCount;
             _cellsCount = _width * _height;
-            map = new int[_height, _width];
+            _map = new int[_height, _width];
             _buttons = new Button[_height, _width];
             _isFirstStep = true;
             _currentPictureToSet = 0;
             _openCellsCount = 0;
             _buttonTypesImageSource = new BitmapImage(ButtonTypeUri);
-            _gamePanel = new StackPanel();
+            GamePanel = new StackPanel();
 
-            _window.Width = _width * CellSize + 15;
-            _window.Height = _height * CellSize + 68;
+            Window.Width = _width * CellSize + 15;
+            Window.Height = _height * CellSize + 68;
 
             InitMap();
             InitButtons();
         }
 
-        private static int CellSize = 25;
-        private static int ButtonImageOffsetStep = 16;
+        private const int CellSize = 25;
+        private const int ButtonImageOffsetStep = 16;
         private static int _cellsCount;
         private static int _width;
         private static int _height;
         private static int _bombsCount;
 
-        private static Uri ButtonTypeUri = new Uri("C:\\Users\\Админ\\source\\repos\\CSharp\\MyMinesweeper\\Images\\ButtonTypes.bmp",
+        private static readonly Uri ButtonTypeUri = new Uri("C:\\Users\\Админ\\source\\repos\\CSharp\\MyMinesweeper\\Images\\ButtonTypes.bmp",
             UriKind.Absolute);
         private static BitmapSource _buttonTypesImageSource;
         private static bool _isFirstStep;
         private static Point _firstCoord;
         private static int _currentPictureToSet;
         private static int _openCellsCount;
-        private static StackPanel _gamePanel;
 
-        public static StackPanel GamePanel
-        {
-            get => _gamePanel;
-            set => _gamePanel = value;
-        }
+        public static StackPanel GamePanel { get; set; }
+        public static Window Window { get; set; }
 
-        private static Window _window;
-
-        public static Window Window
-        {
-            get => _window;
-            set => _window = value;
-        }
-
-        private static int[,] map;
+        private static int[,] _map;
         private static Button[,] _buttons;
 
         private static void InitMap()
@@ -67,7 +55,7 @@ namespace MyMinesweeper.Model
             {
                 for (var j = 0; j < _width; j++)
                 {
-                    map[i, j] = 0;
+                    _map[i, j] = 0;
                 }
             }
         }
@@ -101,7 +89,7 @@ namespace MyMinesweeper.Model
                     row.Children.Add(button);
                 }
 
-                _gamePanel.Children.Add(row);
+                GamePanel.Children.Add(row);
             }
         }
 
@@ -114,13 +102,13 @@ namespace MyMinesweeper.Model
                 var posI = r.Next(0, _height - 1);
                 var posJ = r.Next(0, _width - 1);
 
-                while (map[posI, posJ] == -1 || (Math.Abs(posI - _firstCoord.X) <= 1 && Math.Abs(posJ - _firstCoord.Y) <= 1))
+                while (_map[posI, posJ] == -1 || (Math.Abs(posI - _firstCoord.X) <= 1 && Math.Abs(posJ - _firstCoord.Y) <= 1))
                 {
                     posI = r.Next(0, _height - 1);
                     posJ = r.Next(0, _width - 1);
                 }
 
-                map[posI, posJ] = -1;
+                _map[posI, posJ] = -1;
             }
         }
 
@@ -130,7 +118,7 @@ namespace MyMinesweeper.Model
 
             var tag = button.Tag.ToString();
             var tagSplitted = tag.Split(',');
-            var state = new int[] { Convert.ToInt32(tagSplitted[0]), Convert.ToInt32(tagSplitted[1]) };
+            var state = new [] { Convert.ToInt32(tagSplitted[0]), Convert.ToInt32(tagSplitted[1]) };
 
             if (_isFirstStep)
             {
@@ -150,7 +138,7 @@ namespace MyMinesweeper.Model
                 Restart();
             }
 
-            if (map[state[0], state[1]] != -1)
+            if (_map[state[0], state[1]] != -1)
             {
                 return;
             }
@@ -162,7 +150,7 @@ namespace MyMinesweeper.Model
 
         public static void Restart()
         {
-            _gamePanel.Children.Clear();
+            GamePanel.Children.Clear();
             _isFirstStep = true;
             _currentPictureToSet = 0;
             _openCellsCount = 0;
@@ -198,7 +186,7 @@ namespace MyMinesweeper.Model
             _buttons[i, j].IsEnabled = false;
             _openCellsCount++;
 
-            switch (map[i, j])
+            switch (_map[i, j])
             {
                 case 1:
                     _buttons[i, j].Content = FindNeededImage(14);
@@ -237,7 +225,7 @@ namespace MyMinesweeper.Model
         {
             OpenCell(i, j);
 
-            if (map[i, j] > 0)
+            if (_map[i, j] > 0)
             {
                 return;
             }
@@ -256,12 +244,12 @@ namespace MyMinesweeper.Model
                         continue;
                     }
 
-                    if (map[k, l] == 0)
+                    if (_map[k, l] == 0)
                     {
                         OpenCells(k, l);
                     }
 
-                    else if (map[k, l] > 0)
+                    else if (_map[k, l] > 0)
                     {
                         OpenCell(k, l);
                     }
@@ -280,7 +268,7 @@ namespace MyMinesweeper.Model
                         continue;
                     }
 
-                    if (map[i, j] == -1)
+                    if (_map[i, j] == -1)
                     {
                         _buttons[i, j].Content = FindNeededImage(3);
                     }
@@ -294,7 +282,7 @@ namespace MyMinesweeper.Model
             {
                 for (var j = 0; j < _width; j++)
                 {
-                    if (map[i, j] != -1)
+                    if (_map[i, j] != -1)
                     {
                         continue;
                     }
@@ -303,13 +291,12 @@ namespace MyMinesweeper.Model
                     {
                         for (var l = j - 1; l < j + 2; l++)
                         {
-                            if (!IsInBorder(k, l) || map[k, l] == -1)
+                            if (!IsInBorder(k, l) || _map[k, l] == -1)
                             {
                                 continue;
                             }
 
-                            map[k, l] += 1;
-
+                            _map[k, l] += 1;
                         }
                     }
                 }
