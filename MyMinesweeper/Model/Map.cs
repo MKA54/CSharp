@@ -35,7 +35,7 @@ namespace MyMinesweeper.Model
         private static int _height;
         private static int _bombsCount;
 
-        private static readonly Uri ButtonTypeUri = new Uri("C:\\Users\\Админ\\source\\repos\\CSharp\\MyMinesweeper\\Images\\ButtonTypes.bmp",
+        private static readonly Uri ButtonTypeUri = new Uri("C:\\Users\\Mka91\\source\\repos\\CSharp\\MyMinesweeper\\ImagesButtonTypes.bmp",
             UriKind.Absolute);
         private static BitmapSource _buttonTypesImageSource;
         private static bool _isFirstStep;
